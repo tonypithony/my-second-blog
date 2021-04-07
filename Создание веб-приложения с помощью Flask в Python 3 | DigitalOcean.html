@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Создание веб-приложения с помощью Flask в Python 3 | DigitalOcean</title>
+
+<meta name="description" content="Автор выбрал фонд Free and Open Source Fund для получения пожертвования в рамках программы Write for DOnations. Flask — это небольшой и легкий веб-фреймворк, написанный на…">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/community/apple-icon-180x180-4b5ac7f80f7cb483dde5afeb99c279301c50ec3670129c73ce568f1b465354be.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/community/apple-icon-152x152-ff64fd3242c24284fefdaec8d6d85c68f98744142d58b950f7ec67cbf03251d7.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/community/apple-icon-144x144-3018401d3d675917b06ded0482cdf53a7c3558b4dc7b6b8de21a485a8da27dfe.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/community/apple-icon-120x120-052cdf68a3af8b01c3fd0d46ed35f8f089c10c690109d20e7b186f0159391863.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/community/apple-icon-114x114-8d862033fc61d86a60b4bdbbbab284da399da714089995ce7efc249f36409517.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/community/apple-icon-76x76-d7c1877f2224ca127b591f65d16635fa7472e7b2cd0e1fe7e7dc8b74d03dd874.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/community/apple-icon-72x72-2d888cc13ddb01fb0d786a0c8567c0a2909eaeb86901da715099b6b88a36b46a.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/assets/community/apple-icon-60x60-01be5b392df60249f168b8b2eed5c928c63aa43ac398c7180cd219c5acdd1e70.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="/assets/community/apple-icon-57x57-d060d0fd30794efd579d9edc283917e0a65adfd366e151d9a5cfd8fd7d07cb43.png" />
+
+<link rel="icon" type="image/png" sizes="192x192"  href="/assets/community/android-icon-192x192-4d13e6664f412f6904a78be76d626004bcbbd59671f6c755919628134003c2a8.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/community/favicon-32x32-e377577c425642ab495296dfec040ec903e36ffc4cd7a0a4281e84597891a774.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/community/favicon-96x96-967f34b6716bb3cffebefe1fa53206d38d60c72635e826ec5d172c58fb4ab5a9.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/community/favicon-16x16-ce9c1eb6d969d5b2ec276ae4b715756aa0e63106f33dc53a836687fdfee49ecd.png" />
+
+<meta name="msapplication-TileImage" content="/assets/community/ms-icon-144x144-3018401d3d675917b06ded0482cdf53a7c3558b4dc7b6b8de21a485a8da27dfe.png" />
+<meta name="msapplication-TileColor" content="#0069ff" />
+<meta name="theme-color" content="#0069ff" />
+
+<meta property="og:title" content="Создание веб-приложения с помощью Flask в Python 3 | DigitalOcean">
+<meta property="og:description" content="Автор выбрал фонд Free and Open Source Fund для получения пожертвования в рамках программы Write for DOnations. Flask — это небольшой и легкий веб-фреймворк, написанный на…">
+<meta property="og:site_name" content="DigitalOcean">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.digitalocean.com/assets/community/default_dev_sharing-59787118704f2aaea0f794674cc08cb728a182d74266ef3f8246ee94646db270.png">
+<meta property="og:image:url" content="https://www.digitalocean.com/assets/community/default_dev_sharing-59787118704f2aaea0f794674cc08cb728a182d74266ef3f8246ee94646db270.png">
+<meta property="og:image:alt" content="Создание веб-приложения с помощью Flask в Python 3 | DigitalOcean">
+<meta property="og:url" content="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru">
+
+<meta name="twitter:site" content="@digitalocean">
+<meta name="twitter:title" content="Создание веб-приложения с помощью Flask в Python 3 | DigitalOcean">
+<meta name="twitter:description" content="Автор выбрал фонд Free and Open Source Fund для получения пожертвования в рамках программы Write for DOnations. Flask — это небольшой и легкий веб-фреймворк, написанный на…">
+<meta name="twitter:creator" content="DigitalOcean">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru"/>
+<meta name="twitter:image" content="https://www.digitalocean.com/assets/community/default_dev_sharing-59787118704f2aaea0f794674cc08cb728a182d74266ef3f8246ee94646db270.png">
+<meta name="twitter:image:alt" content="Создание веб-приложения с помощью Flask в Python 3 | DigitalOcean">
+
+  <link rel='canonical' href='https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru'>
+
+  <link rel='amphtml' href='https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru.amp'>
+
+        <link rel="alternate" hreflang="en" href="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3" />
+      <link rel="alternate" hreflang="de" href="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-de" />
+      <link rel="alternate" hreflang="es" href="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-es" />
+      <link rel="alternate" hreflang="fr" href="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-fr" />
+      <link rel="alternate" hreflang="pt" href="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-pt" />
+      <link rel="alternate" hreflang="ru" href="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru" />
+
+
+    
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="xeLvz86vH537wCnolljvDT9nn2v4XcsVcGtVxUGnqSW0AWtyCLAQj-RARGw0KTQTn3I6x7T2XW2J2zuJrQ1XYQ" />
+
+    <link rel="stylesheet" media="all" href="/assets/community/application-517ea6f819a3bbd1226a91b160666a6875ae6abf1d46bead10357e3c4c413c04.css" />
+    <script src="/assets/community/prerequisites-d767b66db7c8ba7d47a922cfce41c73d40601b3586be6f96107d5cd25cc752b8.js"></script>
+
+      <link rel="preconnect" href="https://digitalocean.cdn.prismic.io">
+      <link rel="preconnect" href="https://hello.myfonts.net">
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="/community/tutorials/feed">
+
+      <script>
+//<![CDATA[
+
+  window.cookieDomain = '.digitalocean.com';
+
+//]]>
+</script><script defer src="https://assets.digitalocean.com/cookieConsent/cookieConsent.js"></script>
+<script>
+  (function () {
+    document.addEventListener("DOMContentLoaded", function () {
+      var css = document.getElementById("cookie-consent-css");
+
+      if (css) { return; }
+
+      css = document.createElement("link");
+      css.id = "cookie-consent-css";
+      css.rel = "stylesheet";
+      css.href = "https://assets.digitalocean.com/cookieConsent/cookieConsent.css";
+      document.head.insertBefore(css, document.head.childNodes[ document.head.childNodes.length - 1 ].nextSibling);
+    }, false);
+  })();
+</script>
+
+      <script type="text/javascript">
+  if(window.analytics=window.analytics||[],window.analytics.included)window.console&&console.error&&console.error("analytics.js included twice");else{window.analytics.included=!0,window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(a){return function(){var n=Array.prototype.slice.call(arguments);return n.unshift(a),window.analytics.push(n),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(a){var n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+a+"/analytics.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(n,t)},window.analytics.SNIPPET_VERSION="2.0.9",window.analytics.load("puo3uv968t")}
+</script>
+
+<!-- Google Tag Manager -->
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KHWBBT');
+</script>
+<!-- End Google Tag Manager -->
+
+<script src="/assets/community/internalCookies-d87064530395e23ede521d41535044c0b89092bef82bbb545bd1c8f731908bad.js"></script>
+
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+      <script>
+        window.comApp = {
+          prefix: '/community',
+          svgIconPath: 'https://www.digitalocean.com/assets/community/icon-sprite-a36f54b391966bc94e4a1e4467047db73568edf98e549f4bc919b952f5272560.svg',
+          railsEnv: 'production',
+          rootUrl: 'https://www.digitalocean.com/community',
+          algolia_application_id: '6ZHEUVKJ88',
+          algolia_api_key: 'c5470567eae7fa1177d43222e18ba086'
+        };
+      </script>
+      <script>
+  window.Prism = window.Prism || {};
+  window.Prism.manual = true;
+</script>
+ 
+
+      <script src="/assets/community/application-5a1338e7182f3b9b33e92a12e05d559c9df1e539ac5a6bbcd9ebeb5b3223d5e6.js"></script>
+      <script src="/assets/community/rest-3e648e2c8e9d3bbd0d2bcd838839516bd79fc7b86e2ee3572e897b14c103edbe.js" defer="defer"></script>
+
+  </head>
+
+  <body class="feature-filter-bar feature-upvotes tutorials-controller tutorial-single" data-env="production" data-prefix="/community" data-user-id="" data-facebook-app-id="694818843983011"   data-completed-tutorial-id="" data-tutorial-id="5598" data-js="tutorial"
+>
+    
+
+    <div class='outside_viewport'>
+          <div class="table-of-contents has-init">
+      <div data-js="tableOfContentsDesktop" class="tocify">
+          <ul id="tocify-header0" class="tocify-header">
+            <li class="tocify-item" data-unique="#Предварительные-требования">
+              <a href="#Предварительные-требования">Предварительные требования</a>
+            </li>
+          </ul>
+          <ul id="tocify-header1" class="tocify-header">
+            <li class="tocify-item" data-unique="#Шаг-1-—-Установка-flask">
+              <a href="#Шаг-1-—-Установка-flask">Шаг 1 — Установка Flask</a>
+            </li>
+          </ul>
+          <ul id="tocify-header2" class="tocify-header">
+            <li class="tocify-item" data-unique="#Шаг-2-—-Создание-базового-приложения">
+              <a href="#Шаг-2-—-Создание-базового-приложения">Шаг 2 — Создание базового приложения</a>
+            </li>
+          </ul>
+          <ul id="tocify-header3" class="tocify-header">
+            <li class="tocify-item" data-unique="#Шаг-3-—-Использование-шаблонов-html">
+              <a href="#Шаг-3-—-Использование-шаблонов-html">Шаг 3 — Использование шаблонов HTML</a>
+            </li>
+          </ul>
+          <ul id="tocify-header4" class="tocify-header">
+            <li class="tocify-item" data-unique="#Шаг-4-—-Настройка-базы-данных">
+              <a href="#Шаг-4-—-Настройка-базы-данных">Шаг 4 — Настройка базы данных</a>
+            </li>
+          </ul>
+          <ul id="tocify-header5" class="tocify-header">
+            <li class="tocify-item" data-unique="#Шаг-5-—-Отображение-всех-постов">
+              <a href="#Шаг-5-—-Отображение-всех-постов">Шаг 5 — Отображение всех постов</a>
+            </li>
+          </ul>
+          <ul id="tocify-header6" class="tocify-header">
+            <li class="tocify-item" data-unique="#Шаг-6-—-Отображение-отдельного-поста">
+              <a href="#Шаг-6-—-Отображение-отдельного-поста">Шаг 6 — Отображение отдельного поста</a>
+            </li>
+          </ul>
+          <ul id="tocify-header7" class="tocify-header">
+            <li class="tocify-item" data-unique="#Шаг-7-—-Изменение-постов">
+              <a href="#Шаг-7-—-Изменение-постов">Шаг 7 — Изменение постов</a>
+            </li>
+          </ul>
+          <ul id="tocify-header8" class="tocify-header">
+            <li class="tocify-item" data-unique="#Заключение">
+              <a href="#Заключение">Заключение</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div id='share-modal' class="hidden" role="dialog" aria-labelledby="share-modal-title" aria-modal='true'>
+  <div class='mini-dialog-panel'>
+    <div class='dialog-header'>
+      <span class='close-btn'>&times;</span>
+      <span class='dialog-title' id="share-modal-title">Share this Tutorial</span>
+    </div>
+
+    <div class='dialog-body'>
+      <h2>Where would you like to share this to?</h2>
+
+      <div class="social-sharing social-sharing-container">
+        <ul>
+          <li class="shareBtn" id="sbTwitter">
+            <a href="http://twitter.com/share?text=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203&amp;url=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dtwshare" class="share-icon share-popup" title="Share on Twitter" target="_blank">
+              <span class="sIcon icon-bird"></span>
+            </a>
+            <a href="http://twitter.com/share?text=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203&amp;url=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dtwshare" class="share-link share-popup" title="Share on Twitter" target="_blank">
+              Twitter
+            </a>
+          </li>
+
+          <li class="shareBtn" id="sbReddit">
+            <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Drdshare&amp;title=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203" class="share-icon share-popup" target="_blank" title="Share on Reddit">
+              <span class="sIcon icon-reddit"></span>
+            </a>
+            <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Drdshare&amp;title=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203" class="share-link share-popup" target="_blank" title="Share on Reddit">
+              Reddit
+            </a>
+          </li>
+
+          <li class="shareBtn" id="sbYC">
+            <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dhnshare&amp;t=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203" class="share-icon share-popup" target="_blank" title="Submit to Hacker News">
+              <span class="sIcon icon-hacker-news"></span>
+            </a>
+            <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dhnshare&amp;t=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203" class="share-link share-popup" target="_blank" title="Submit to Hacker News">
+              Hacker News
+            </a>
+          </li>
+
+          <li class="shareBtn" id="sbFacebook">
+            <a class="share-icon share-popup" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dfbshare" title="Share on Facebook" target="_blank">
+              <span class="sIcon icon-facebook-B"></span>
+            </a>
+            <a class="share-link share-popup" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dfbshare" title="Share on Facebook" target="_blank">
+              Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex-form">
+        <p class="dialog-text">Share link</p>
+
+        <label for="share-modal-share-link" class="sr-only">Tutorial share link</label>
+        <div class="field">
+          <input type="text" id="share-modal-share-link" name="share-modal-share-link" readonly="readonly"
+                 value="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru?utm_content=how-to-make-a-web-application-using-flask-in-python-3-ru&amp;utm_medium=community&amp;utm_source=linkshare" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- algolia universal search -->
+<input type="hidden" id="q-universal-search" value="" />
+
+
+
+<div id='share-modal' class="hidden" role="dialog" aria-labelledby="share-modal-title" aria-modal='true'>
+  <div class='mini-dialog-panel'>
+    <div class='dialog-header'>
+      <span class='close-btn'>&times;</span>
+      <span class='dialog-title' id="share-modal-title">Share this Tutorial</span>
+    </div>
+
+    <div class='dialog-body'>
+      <h2>Where would you like to share this to?</h2>
+
+      <div class="social-sharing social-sharing-container">
+        <ul>
+          <li class="shareBtn" id="sbTwitter">
+            <a href="http://twitter.com/share?text=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203&amp;url=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dtwshare" class="share-icon share-popup" title="Share on Twitter" target="_blank">
+              <span class="sIcon icon-bird"></span>
+            </a>
+            <a href="http://twitter.com/share?text=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203&amp;url=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dtwshare" class="share-link share-popup" title="Share on Twitter" target="_blank">
+              Twitter
+            </a>
+          </li>
+
+          <li class="shareBtn" id="sbReddit">
+            <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Drdshare&amp;title=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203" class="share-icon share-popup" target="_blank" title="Share on Reddit">
+              <span class="sIcon icon-reddit"></span>
+            </a>
+            <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Drdshare&amp;title=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203" class="share-link share-popup" target="_blank" title="Share on Reddit">
+              Reddit
+            </a>
+          </li>
+
+          <li class="shareBtn" id="sbYC">
+            <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dhnshare&amp;t=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203" class="share-icon share-popup" target="_blank" title="Submit to Hacker News">
+              <span class="sIcon icon-hacker-news"></span>
+            </a>
+            <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dhnshare&amp;t=%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%B1-%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E%20Flask%20%D0%B2%20Python%203" class="share-link share-popup" target="_blank" title="Submit to Hacker News">
+              Hacker News
+            </a>
+          </li>
+
+          <li class="shareBtn" id="sbFacebook">
+            <a class="share-icon share-popup" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dfbshare" title="Share on Facebook" target="_blank">
+              <span class="sIcon icon-facebook-B"></span>
+            </a>
+            <a class="share-link share-popup" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fhow-to-make-a-web-application-using-flask-in-python-3-ru%3Futm_content%3Dhow-to-make-a-web-application-using-flask-in-python-3-ru%26utm_medium%3Dcommunity%26utm_source%3Dfbshare" title="Share on Facebook" target="_blank">
+              Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex-form">
+        <p class="dialog-text">Share link</p>
+
+        <label for="share-modal-share-link" class="sr-only">Tutorial share link</label>
+        <div class="field">
+          <input type="text" id="share-modal-share-link" name="share-modal-share-link" readonly="readonly"
+                 value="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru?utm_content=how-to-make-a-web-application-using-flask-in-python-3-ru&amp;utm_medium=community&amp;utm_source=linkshare" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div id="newsletter-signup-dialog" class="newsletter-signups-dialog" data-newsletter-signup-dialog data-article-target=".content-body">
+  <div class="form-message">
+  <div class="pull-right">
+    <a href="javascript:;" class="newsletter-signups-dialog-dismiss" data-newsletter-signup-dismiss>&times;</a>
+
+  </div>
+  <h4 class="newsletter-signups-dialog-title">
+    Sign up for our newsletter
+  </h4>
+  <p class="newsletter-signups-dialog-description">
+    Get the latest tutorials on SysAdmin and open source topics.
+  </p>
+  <form class="newsletter-signup" id="new_newsletter_signup" data-newsletter-signup="true" action="/community/newsletter" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+
+  <input data-newsletter-signup-field="url" type="hidden" name="newsletter_signup[url]" id="newsletter_signup_url" />
+  <input data-newsletter-signup-field="title" type="hidden" name="newsletter_signup[title]" id="newsletter_signup_title" />
+
+  <div class="newsletter-signup-ajax-error" data-newsletter-signup-ajax-error></div>
+
+
+  <div class="form-group">
+    <input placeholder="Enter your email address" required="required" class="field" type="email" name="newsletter_signup[email]" id="newsletter_signup_email" />
+  
+    <button data-disable-with="Sign Up" class="button blue-button full-width-button">
+      Sign Up
+    </button>
+  </div>
+</form>
+</div>
+
+<div class="thanks-message hidden" data-newsletter-signup-successful> 
+  <div class='pull-right'> 
+    <a href='javascript:;' class='newsletter-signups-dialog-dismiss' data-newsletter-signup-dismiss>&times;</a> 
+  </div> 
+
+  <span class='newsletter-signups-dialog-success'> 
+    Thanks for signing up! 
+  </span> 
+</div>
+
+</div>
+
+
+
+      
+    </div>
+
+      
+      
+<div style="display: none;">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol id="navbar-logo" xmlns="http://www.w3.org/2000/svg"> <title>DigitalOcean home</title> <g fill="currentColor" fill-rule="evenodd"> <path d="M14.4942 29v-5.5674c5.9572 0 10.5633-5.8478 8.2892-12.059-.8425-2.3006-2.693-4.1355-5.0126-4.9706-6.262-2.2534-12.1564 2.3135-12.1573 8.2207 0 0-.0006.0014-.0014.0014H0C0 5.2123 9.1687-2.1167 19.1138.9624c4.3459 1.3457 7.7993 4.7708 9.1561 9.081C31.3742 19.9068 23.985 29 14.4942 29"></path> <path d="M14.507 23.4468H8.9103v-5.549s.0005-.0011.0011-.0011h5.5949c.0006 0 .0009.0006.0009.0006v5.5495M8.9093 27.7118H4.6105l-.0012-.0012v-4.2638h4.3009v4.2638l-.0009.0012M4.6125 23.4468H1.0088c-.0015 0-.0026-.0012-.0026-.0012v-3.5724s.0011-.0025.0026-.0025h3.601c.0015 0 .0027.0011.0027.0011v3.575M43.2806 9.6357h1.649c1.8346 0 3.345.358 4.49 1.0647 1.2714.7603 1.9164 2.2069 1.9164 4.2991 0 2.1554-.6465 3.6671-1.9207 4.4942h-.0008c-1.0971.7196-2.5981 1.0846-4.462 1.0846h-1.6719V9.6357zm8.324-1.0736c-1.6598-1.142-3.7252-1.721-6.1387-1.721h-5.2537V23.373h5.2537c2.4074 0 4.4737-.6113 6.1407-1.8157.907-.6382 1.6197-1.5304 2.1185-2.651.4962-1.1144.7479-2.4288.7479-3.9067 0-1.4605-.2517-2.758-.7482-3.857-.4988-1.104-1.212-1.972-2.1202-2.5804zM58.1303 6.6376c-.5051 0-.9403.1777-1.2906.5254-.3546.335-.5346.7597-.5346 1.2618 0 .501.1791.9322.532 1.2825.3529.35.788.528 1.2932.528.5042 0 .9394-.178 1.2928-.528.3535-.3508.5324-.7821.5324-1.2825 0-.5015-.18-.926-.5324-1.2592-.3534-.3503-.7886-.528-1.2928-.528M56.6247 23.3729h2.9538V11.7294h-2.9538zM69.5321 19.5787c-.5162.5814-1.1793.8635-2.0264.8635-.8471 0-1.5064-.282-2.015-.863-.5065-.5777-.7637-1.3439-.7637-2.2773 0-.9479.2572-1.7238.764-2.3058.502-.576 1.1796-.8683 2.0147-.8683.8465 0 1.5096.284 2.0262.8695.5142.582.7751 1.3573.7751 2.3046 0 .9328-.2609 1.6988-.7749 2.2768zm.775-6.8767c-.8908-.7858-1.8858-1.2444-2.9614-1.2444-1.6305 0-2.9859.5598-4.0276 1.662-1.0555 1.0932-1.5907 2.5006-1.5907 4.1823 0 1.644.5269 3.0464 1.568 4.1709 1.0498 1.088 2.4123 1.6396 4.0503 1.6396 1.139 0 2.1182-.3144 2.9157-.9356v.268c0 .9662-.2608 1.7176-.7751 2.234-.5137.5154-1.226.7764-2.1173.7764-1.3637 0-2.2183-.5314-3.2589-1.9262l-2.0115 1.917.0542.0754c.4346.605 1.1 1.197 1.9785 1.7594.8787.5603 1.9832.8447 3.2832.8447 1.7536 0 3.1726-.5363 4.2172-1.5933 1.0506-1.0628 1.5835-2.486 1.5835-4.2286V11.7294H70.307v.9726zM75.7434 23.3729h2.9541V11.7294h-2.9541zM77.249 6.6376c-.5052 0-.94.1777-1.2906.5254-.3547.335-.5344.7597-.5344 1.2618 0 .501.1789.9322.532 1.2825.353.35.7878.528 1.293.528.5045 0 .9396-.178 1.2928-.528.3535-.3508.5323-.7821.5323-1.2825 0-.5015-.1797-.926-.5323-1.2592-.3532-.3503-.7883-.528-1.2929-.528M85.1724 8.5831h-2.9082v3.1463h-1.6888v2.6702h1.6888v4.8365c0 1.5134.3047 2.5964.9064 3.2181.6031.6247 1.6741.9414 3.1831.9414.48 0 .963-.0156 1.4354-.0463l.133-.0088v-2.6683l-1.013.0526c-.7033 0-1.1728-.1226-1.3961-.3637-.226-.245-.3406-.7636-.3406-1.5404v-4.421h2.7497v-2.6703h-2.7497V8.583M101.7735 23.3729h2.9544V6.8412h-2.9544zM134.5728 19.2094c-.5286.5874-1.0693 1.0966-1.4855 1.3613v.0005c-.4085.2599-.924.3918-1.532.3918-.8703 0-1.5703-.3144-2.1405-.9621-.567-.644-.8545-1.4716-.8545-2.4613s.2838-1.8162.8436-2.4556c.5625-.6434 1.2588-.9562 2.1285-.9562.9515 0 1.9548.5869 2.8145 1.5947l1.9525-1.8568c-1.273-1.6433-2.897-2.4081-4.8352-2.4081-1.622 0-3.028.5862-4.1788 1.7411-1.1446 1.147-1.7251 2.6074-1.7251 4.3409 0 1.7335.58 3.1977 1.7234 4.352 1.1447 1.1557 2.5514 1.7417 4.1805 1.7417 2.139 0 3.8651-.9158 5.029-2.5935l-1.9204-1.8304M140.2405 16.0973c.1422-.5567.401-1.0207.7714-1.381.4005-.3906.9214-.5885 1.5489-.5885.716 0 1.2702.2019 1.6474.6014.3495.3696.5467.8296.588 1.368h-4.5557zm6.4569-2.7414c-.4191-.5788-.9896-1.0448-1.6965-1.3854-.7047-.3404-1.526-.513-2.441-.513-1.6489 0-2.9982.6037-4.0113 1.7946-.9836 1.182-1.4818 2.651-1.4818 4.3665 0 1.7648.547 3.2253 1.6254 4.341 1.0727 1.1105 2.5083 1.6737 4.267 1.6737 1.992 0 3.627-.799 4.8587-2.3752l.0666-.0847-1.9273-1.837c-.1789.2139-.4317.4561-.6628.6722-.2918.273-.5659.4842-.8588.6289-.4415.218-.9369.3255-1.4907.3255-.8187 0-1.4964-.2388-2.0147-.71-.4847-.4403-.768-1.0345-.843-1.7683h7.8265l.0264-1.0693c0-.7569-.1038-1.4862-.3088-2.1677a6.312 6.312 0 0 0-.934-1.8918zM152.797 18.9234c.3352-.2318.8085-.3483 1.4073-.3483.7112 0 1.4654.1413 2.2426.421v1.1421c-.6421.592-1.4996.8922-2.5499.8922-.5114 0-.909-.1126-1.1822-.3355-.2683-.218-.3985-.4955-.3985-.847 0-.3994.1571-.7022.4808-.9245zm5.2452-6.3229h-.0003c-.8952-.758-2.1328-1.143-3.678-1.143-.9829 0-1.902.2144-2.7336.6324-.7691.387-1.5245 1.0275-2.0043 1.8662l.0298.0358 1.8917 1.796c.7791-1.2322 1.6454-1.66 2.7941-1.66.6172 0 1.1298.1643 1.5234.4881.3916.3216.5819.7304.5819 1.249v.5652c-.7324-.221-1.4629-.333-2.1738-.333-1.47 0-2.6663.3432-3.555 1.0193-.9.6852-1.3562 1.665-1.3562 2.9125 0 1.094.3847 1.9829 1.1461 2.6433.7677.6372 1.7275.961 2.8524.961 1.1246 0 2.177-.4495 3.132-1.2191v.9587h2.9089v-7.4852c0-1.4173-.4572-2.523-1.3591-3.2872zM170.7656 12.8285c-.8227-.9092-1.9791-1.371-3.4371-1.371-1.172 0-2.1236.3338-2.8357.9926v-.7207h-2.897v11.6435h2.954v-6.4215c0-.8823.2119-1.5828.6293-2.0826.4162-.4987.989-.741 1.75-.741.6691 0 1.1765.2167 1.5506.662.3759.4474.5662 1.0638.5662 1.8335v6.7496H172v-6.7496c0-1.6127-.415-2.889-1.2344-3.7948M92.8158 18.9234c.3351-.2318.8087-.3483 1.4075-.3483.7112 0 1.4652.1413 2.2426.421v1.1421c-.6421.592-1.4998.8922-2.5502.8922-.5114 0-.9087-.1126-1.1819-.3355-.2683-.218-.3988-.4955-.3988-.847 0-.3994.1574-.7022.4808-.9245zm5.2451-6.3229h-.0003c-.8952-.758-2.1328-1.143-3.6776-1.143-.983 0-1.902.2144-2.7337.6324-.7694.387-1.5247 1.0275-2.0043 1.8662l.0295.0358 1.8917 1.796c.7792-1.2322 1.6458-1.66 2.7941-1.66.6172 0 1.1298.1643 1.5234.4881.3916.3216.5822.7304.5822 1.249v.5652c-.7327-.221-1.4631-.333-2.174-.333-1.47 0-2.6664.3432-3.555 1.0193-.8999.6852-1.3562 1.665-1.3562 2.9125 0 1.094.3847 1.9829 1.1463 2.6433.7677.6372 1.7272.961 2.8524.961 1.1246 0 2.1766-.4495 3.1318-1.2191v.9587H99.42v-7.4852c0-1.4173-.457-2.523-1.359-3.2872zM115.4464 9.5808c-3.0682 0-5.5645 2.4755-5.5645 5.5188s2.4963 5.5188 5.5645 5.5188c3.0682 0 5.5645-2.4755 5.5645-5.5188s-2.4963-5.5188-5.5645-5.5188zm0 14.0408c-4.7383 0-8.5928-3.8228-8.5928-8.522 0-4.6994 3.8545-8.5223 8.5928-8.5223 4.738 0 8.5925 3.8229 8.5925 8.5223 0 4.6992-3.8545 8.522-8.5925 8.522z"></path> </g> </symbol>
+    <symbol id="navbar-community_logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532.2 99.8" fill="currentColor"> <path class="st0" d="M98.5,23c15.5,0,27.7,12.1,27.7,28.2c0,16.1-12.3,28.1-27.7,28.1c-15.6,0-27.7-11.9-27.7-28.1 C70.8,35.1,82.9,23,98.5,23z M98.5,67.9c8.7,0,14.9-7,14.9-16.8c0-9.8-6.2-16.8-14.9-16.8c-8.8,0-15,7-15,16.8 C83.5,60.9,89.7,67.9,98.5,67.9z"/> <path class="st0" d="M166.8,45.9c0-7-3.5-11.6-9.9-11.6c-7.2,0-11.1,5.3-11.1,13.1V78h-12.5V24.3h12.3V29c2.4-2.8,7-6,13.9-6 c7.3,0,12.2,3.1,15,7c4.4-4.9,10-7,16.8-7c14.4,0,21.4,8.5,21.4,23.8V78h-12.5V45.9c0-7-3.5-11.6-9.9-11.6 c-7.2,0-11.2,5.3-11.2,13.1V78h-12.4V45.9z"/> <path class="st0" d="M255.5,45.9c0-7-3.5-11.6-9.9-11.6c-7.2,0-11.1,5.3-11.1,13.1V78h-12.5V24.3h12.3V29c2.4-2.8,7-6,13.9-6 c7.3,0,12.2,3.1,15,7c4.4-4.9,10-7,16.8-7c14.4,0,21.4,8.5,21.4,23.8V78h-12.5V45.9c0-7-3.5-11.6-9.9-11.6 c-7.2,0-11.2,5.3-11.2,13.1V78h-12.4V45.9z"/> <path class="st0" d="M322.5,56.4c0,7,3.6,11.6,10.1,11.6c7.2,0,11.2-5.6,11.2-13.5V24.3h12.5V78h-12.3v-4.4 c-3.4,3.7-8.1,5.6-13.9,5.6c-11.9,0-20.1-8.4-20.1-23.7V24.3h12.5V56.4z"/> <path class="st0" d="M378.2,78h-12.5V24.3h12.3v4.4c2.7-3.1,7.7-5.7,13.9-5.7c13.1,0,21.3,8.5,21.3,23.8V78h-12.5V46.8 c0-7.5-3.7-12.5-10.6-12.5c-7.8,0-11.8,5.6-11.8,14V78z"/> <path class="st0" d="M427.8,0.2c4.4,0,7.9,3.4,7.9,7.8s-3.5,7.9-7.9,7.9c-4.4,0-7.9-3.5-7.9-7.9S423.4,0.2,427.8,0.2z M421.4,24.3 h12.5V78h-12.5V24.3z"/> <path class="st0" d="M446.7,59.1V35.5h-6.5V24.3h6.5v-15H459v15h12.2v11.2H459v21.7c0,7.8,1.8,9.8,8.8,9.8c1.2,0,4.1-0.2,4.1-0.2 v11.2c0,0-2.4,0.2-6.7,0.2C451.2,78.1,446.7,72.7,446.7,59.1z"/> <path class="st0" d="M497.3,78.7l-21.3-54.4h14.2l14,38.8l14.2-38.8h13.6l-24.1,60.2c-3.7,9.4-7.2,15.3-21.3,15.3 c-2.5,0-4.8-0.1-4.8-0.1V88c0,0,1.5,0.1,2.8,0.1c7.6,0,9.8-2.3,11.8-7.8L497.3,78.7z"/> <path class="st0" d="M62.4,55.9c-5.3,7-12.2,11.4-22.1,11.4c-15.6,0-27-11.7-27-27.5c0-16.1,11.4-27.8,26.5-27.8 c10,0,16.8,4.8,21.3,11.3l8.4-8.8C63.1,5.7,53.3,0,39.7,0C17.1,0,0,15.9,0,39.8c0,23.4,17.1,39.4,40.1,39.4c13.1,0,22-4.9,28.6-12.2 L62.4,55.9z"/> </symbol>
+    <symbol id="navbar-control_panel_icon" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M19.6875 23.4862C19.6885 23.9722 19.4965 24.4388 19.1537 24.7833C18.8109 25.1279 18.3454 25.3222 17.8594 25.3237H3.23438C2.99366 25.3232 2.75539 25.2753 2.53321 25.1827C2.31102 25.09 2.10927 24.9545 1.93949 24.7839C1.7697 24.6132 1.63522 24.4108 1.54373 24.1881C1.45223 23.9655 1.40552 23.727 1.40626 23.4862V3.25498C1.40577 3.01417 1.45271 2.77562 1.54441 2.55295C1.63611 2.33028 1.77077 2.12785 1.9407 1.95722C2.11063 1.7866 2.31251 1.65111 2.5348 1.5585C2.75709 1.46589 2.99545 1.41797 3.23626 1.41748L17.8613 1.44186C18.347 1.44384 18.812 1.63843 19.1544 1.98292C19.4968 2.32741 19.6885 2.79366 19.6875 3.27936V23.4862Z" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M43.5863 12.27C43.5828 12.7516 43.3883 13.212 43.0456 13.5503C42.7028 13.8885 42.2397 14.0768 41.7582 14.0738H27.1332C26.8947 14.0755 26.6582 14.0302 26.4372 13.9405C26.2162 13.8507 26.015 13.7183 25.8453 13.5508C25.6755 13.3833 25.5404 13.1839 25.4477 12.9642C25.355 12.7444 25.3065 12.5085 25.3051 12.27V3.24565C25.308 2.76461 25.5019 2.30442 25.8439 1.96621C26.186 1.62799 26.6484 1.43941 27.1294 1.4419L41.7544 1.41753C42.2365 1.41403 42.7002 1.60205 43.0437 1.94027C43.3872 2.27849 43.5823 2.73924 43.5863 3.22128V12.27Z" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M19.6875 41.7956C19.686 42.0347 19.6375 42.2712 19.5446 42.4915C19.4518 42.7118 19.3164 42.9117 19.1463 43.0797C18.9762 43.2477 18.7747 43.3806 18.5532 43.4707C18.3318 43.5609 18.0947 43.6065 17.8556 43.605L3.23063 43.5806C2.74908 43.5826 2.28644 43.3934 1.94436 43.0545C1.60228 42.7155 1.40873 42.2547 1.40625 41.7731V32.7563C1.40748 32.5175 1.45575 32.2813 1.54831 32.0612C1.64087 31.8412 1.7759 31.6415 1.94569 31.4736C2.11547 31.3057 2.31667 31.173 2.53779 31.0829C2.75892 30.9929 2.99562 30.9473 3.23438 30.9488H17.8594C18.3414 30.9463 18.8047 31.1352 19.1475 31.4742C19.4903 31.8131 19.6845 32.2742 19.6875 32.7563V41.7956Z" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M27.1349 43.605C26.894 43.6045 26.6555 43.5565 26.433 43.4638C26.2106 43.3711 26.0087 43.2354 25.8387 43.0646C25.6688 42.8937 25.5341 42.6911 25.4426 42.4682C25.351 42.2453 25.3042 42.0066 25.3049 41.7656V21.5381C25.3042 21.2973 25.3509 21.0587 25.4424 20.8359C25.5338 20.6132 25.6683 20.4106 25.8381 20.2398C26.0078 20.069 26.2095 19.9333 26.4317 19.8405C26.6539 19.7476 26.8923 19.6995 27.1331 19.6987H41.7581C41.9989 19.6995 42.2372 19.7476 42.4594 19.8405C42.6816 19.9333 42.8833 20.069 43.0531 20.2398C43.2228 20.4106 43.3573 20.6132 43.4488 20.8359C43.5402 21.0587 43.5869 21.2973 43.5862 21.5381V41.7412C43.5872 42.2271 43.3955 42.6935 43.0532 43.0383C42.7109 43.3831 42.2458 43.5781 41.7599 43.5806L27.1349 43.605Z" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </symbol>
+    <symbol id="navbar-community_icon" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0)"> <path d="M12.6562 10.5469C12.6562 9.85155 12.8624 9.17184 13.2487 8.5937C13.635 8.01556 14.1841 7.56495 14.8265 7.29886C15.4689 7.03277 16.1758 6.96315 16.8577 7.0988C17.5397 7.23445 18.1661 7.56929 18.6578 8.06095C19.1495 8.55262 19.4843 9.17905 19.6199 9.86101C19.7556 10.543 19.686 11.2499 19.4199 11.8922C19.1538 12.5346 18.7032 13.0837 18.1251 13.47C17.5469 13.8563 16.8672 14.0625 16.1719 14.0625" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M16.1719 18.2812C16.0328 18.2812 15.8969 18.3225 15.7812 18.3997C15.6656 18.477 15.5755 18.5868 15.5223 18.7153C15.4691 18.8438 15.4551 18.9852 15.4823 19.1215C15.5094 19.2579 15.5764 19.3832 15.6747 19.4816C15.773 19.5799 15.8983 19.6469 16.0347 19.674C16.1711 19.7011 16.3125 19.6872 16.4409 19.634C16.5694 19.5808 16.6792 19.4906 16.7565 19.375C16.8338 19.2594 16.875 19.1234 16.875 18.9844C16.875 18.7979 16.8009 18.6191 16.6691 18.4872C16.5372 18.3553 16.3584 18.2812 16.1719 18.2812Z" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M32.3438 4.21875V12.6562" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M29.5312 1.40625C30.2772 1.40625 30.9925 1.70257 31.52 2.23001C32.0474 2.75746 32.3438 3.47283 32.3438 4.21875" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M4.21875 1.40625H29.5312" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M1.40625 4.21875C1.40625 3.47283 1.70257 2.75746 2.23001 2.23001C2.75746 1.70257 3.47283 1.40625 4.21875 1.40625" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M1.40625 23.9062V4.21875" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M4.21875 26.7188C3.47283 26.7187 2.75746 26.4224 2.23001 25.895C1.70257 25.3675 1.40625 24.6522 1.40625 23.9062" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M9.84375 26.7188H4.21875" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M9.84375 35.1562V26.7188" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M15.4688 30.9375L9.84375 35.1562" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M43.5938 35.1562H37.9688V43.5938L29.5312 35.1562H21.0938V18.2812H43.5938V35.1562Z" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M32.3438 23.9062V29.5312" stroke="#0069FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </g> <defs> <clipPath id="clip0"> <rect width="45" height="45" fill="white"/> </clipPath> </defs> </symbol>
+    <symbol id="navbar-search" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></symbol>
+    <symbol id="navbar-logomark" viewBox="65.2 173.5 180 180" fill="currentColor"><path d="M155.2,351.7v-34.2c36.2,0,64.3-35.9,50.4-74c-5.1-14.1-16.4-25.4-30.5-30.5c-38.1-13.8-74,14.2-74,50.4l0,0H67c0-57.7,55.8-102.7,116.3-83.8c26.4,8.3,47.5,29.3,55.7,55.7C257.9,295.9,213,351.7,155.2,351.7z"/> <polygon points="155.3,317.6 121.3,317.6 121.3,283.6 121.3,283.6 155.3,283.6 155.3,283.6"/> <polygon points="121.3,343.8 95.1,343.8 95.1,343.8 95.1,317.6 121.3,317.6"/> <path d="M95.1,317.6H73.2l0,0v-21.9l0,0h21.9l0,0V317.6z"/></symbol>
+    <symbol id="navbar-hubforgood" viewBox="6 6 30 30" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5"><circle class="cls-3" cx="21" cy="21.03" r="8.92"/><path class="cls-3" d="M12.08,21a8.94,8.94,0,0,1,8.6-8.92"/><path class="cls-3" d="M29.92,21a9.18,9.18,0,0,1-2.61,6.37A9,9,0,0,1,20.75,30"/><path class="cls-3" d="M21,25.36S16.35,22.69,16.35,20a2.3,2.3,0,0,1,4.59,0h0a2.28,2.28,0,0,1,2.29-2.29A2.25,2.25,0,0,1,25.52,20C25.65,22.69,21,25.36,21,25.36Z"/><path class="cls-3" d="M7.43,20.84A13.49,13.49,0,0,1,20.68,7.46"/><path class="cls-3" d="M34.57,20.91a13.57,13.57,0,0,1-3.95,9.68,13.35,13.35,0,0,1-9.68,3.95"/><path class="cls-3" d="M20.87,34.6a13.42,13.42,0,0,1-9.49-4,13.64,13.64,0,0,1-4-9.81l4.65.13a8.94,8.94,0,0,0,2.61,6.31,9.09,9.09,0,0,0,6.06,2.61Z"/><path class="cls-3" d="M29.92,21a9.06,9.06,0,0,0-2.61-6.31,8.89,8.89,0,0,0-6.63-2.61V7.4a13.76,13.76,0,0,1,9.88,3.95,13.42,13.42,0,0,1,3.95,9.49Z"/></symbol>
+    <symbol id="navbar-write4do" viewBox="0 0 30 30" fill="none" stroke="currentColor"> <path d="M16.3063 17.67L11.6663 18.3338L12.3288 13.6925L24.2613 1.76002C24.7887 1.23257 25.5041 0.936249 26.25 0.936249C26.6194 0.936249 26.9851 1.009 27.3263 1.15034C27.6675 1.29168 27.9776 1.49885 28.2388 1.76002C28.4999 2.02118 28.7071 2.33123 28.8484 2.67246C28.9898 3.01369 29.0625 3.37942 29.0625 3.74877C29.0625 4.11811 28.9898 4.48384 28.8484 4.82507C28.7071 5.1663 28.4999 5.47635 28.2388 5.73752L16.3063 17.67Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M22.935 3.08624L26.9125 7.06374"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M23.4375 17.8125V27.1875C23.4375 27.6848 23.24 28.1617 22.8883 28.5133C22.5367 28.865 22.0598 29.0625 21.5625 29.0625H2.8125C2.31522 29.0625 1.83831 28.865 1.48667 28.5133C1.13504 28.1617 0.9375 27.6848 0.9375 27.1875V8.4375C0.9375 7.94022 1.13504 7.46331 1.48667 7.11167C1.83831 6.76004 2.31522 6.5625 2.8125 6.5625H12.1875" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </symbol>
+    <symbol id="navbar-hacktoberfest" viewBox="0 0 30 30" fill="none" stroke="currentColor"> <path d="M19.2063 24.9918L16.5714 22.3569V14.4854L13.986 17.0708V23.5755L12.5615 25L11.1371 23.5591V8.44175L10.7419 8.04652L8.93042 9.8662L8 8.94401L11.9358 5.00823L11.944 5.01647L12.1005 5.16468L13.9778 7.04199V13.8431L16.5632 11.2577V8.42528L15.2705 7.12433L17.3948 5L19.4286 7.03376V20.9572L20.4249 21.9535L21.6352 20.7431L22.5492 21.6571L19.2063 24.9918Z" fill="currentcolor"/> <rect x="0.75" y="0.75" width="28.5" height="28.5" rx="2.25" stroke-width="1.5" stroke="currentColor"/> </symbol>
+    <symbol id="navbar-build" viewBox="0 0 16 16" fill="none" stroke="currentColor"> <path d="M1.5 14.5C1.23478 14.5 0.98043 14.3946 0.792893 14.2071C0.605357 14.0196 0.5 13.7652 0.5 13.5V2.57667C0.500879 2.29139 0.614596 2.01804 0.81632 1.81632C1.01804 1.6146 1.29139 1.50088 1.57667 1.5H14.4287C14.7125 1.50088 14.9845 1.61403 15.1852 1.81476C15.386 2.01548 15.4991 2.28747 15.5 2.57133V13.4233C15.4991 13.7086 15.3854 13.982 15.1837 14.1837C14.982 14.3854 14.7086 14.4991 14.4233 14.5H1.5Z" stroke-linecap="round" stroke-linejoin="round"/> <path d="M15.5 4.5H0.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M11 7.5L13 9.5L11 11.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M5 7.5L3 9.5L5 11.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M9 7.5L7 11.5" stroke-linecap="round" stroke-linejoin="round"/> </symbol>
+  </svg>
+</div>
+
+<nav class="navbar" role="navigation" aria-label="Navigation" data-js="global-navbar">
+  <ul role="menubar" class="utility">
+    <li role="banner" data-flex="grow" data-show="always" data-js="global-navbar-banner">
+    </li>
+    <li role="menuitem">
+      <a href="/products/">Products</a>
+    </li>
+    <li role="menuitem">
+      <a href="/pricing/">Pricing</a>
+    </li>
+    <li role="menuitem" aria-haspopup="true" tabindex="0">
+      <span class="expander">Docs</span>
+      <div role="menuitem" class="mini" aria-expanded="false">
+        <ul role="menu">
+          <li role="menuitem">
+            <a href="/docs/">Product Docs</a>
+          </li>
+          <li role="menuitem">
+            <a href="https://developers.digitalocean.com/documentation/">API Docs</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+      <li role="menuitem" aria-haspopup="true" tabindex="0">
+      <span class="expander">Sign in</span>
+        <div role="menuitem" class="mini" aria-expanded="false">
+          <header>Sign in to</header>
+          <ul role="menu">
+            <li role="menuitem">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use xlink:href="#navbar-community_icon"></use>
+              </svg>
+              <a id="log-in" href="/community/auth/digitalocean">Community</a>
+            </li>
+            <li role="menuitem">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use xlink:href="#navbar-control_panel_icon"></use>
+              </svg>
+              <a href="https://cloud.digitalocean.com/registrations/new">Control Panel</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+  </ul>
+
+  <ul role="menubar" class="primary">
+    <li role="menuitem" data-show="always" class="logo-square">
+      <a href="https://www.digitalocean.com/">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" shape-rendering="auto">
+          <use xlink:href="#navbar-logomark"></use>
+        </svg>
+      </a>
+    </li>
+    <li role="menuitem" data-show="always">
+      <a title="DigitalOcean Community Home" class="home" href="/community">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120px" height="24px"
+             shape-rendering="auto">
+          <use xlink:href="#navbar-community_logo"></use>
+        </svg>
+</a>    </li>
+    <li role="menuitem">
+      <a data-activatable="true" href="/community/tutorials">Tutorials</a>
+    </li>
+    <li role="menuitem">
+      <a data-activatable="true" href="/community/questions">Questions</a>
+    </li>
+    <li role="menuitem" aria-haspopup="true" class="mega_parent" tabindex="0">
+      <span class="expander">Get Involved</span>
+      <div role="menuitem" class="mega" aria-expanded="false">
+        <div class="section column">
+          <header>Participate</header>
+          <ul role="menu">
+            <li role="menuitem">
+              <a href="https://www.digitalocean.com/community/pages/hub-for-good" class="with_image">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <use xlink:href="#navbar-hubforgood"></use>
+                </svg>
+                <p>
+                  <strong>Hub for Good</strong>
+                  Supporting each other to make an impact
+                </p>
+              </a>
+            </li>
+            <li role="menuitem">
+              <a class="with_image" href="/community/pages/write-for-digitalocean">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <use xlink:href="#navbar-write4do"></use>
+                </svg>
+                <p>
+                  <strong>Write for DigitalOcean</strong>
+                  You get paid, we donate to tech non-profits.
+                </p>
+</a>            </li>
+            <li role="menuitem">
+              <a href="https://hacktoberfest.digitalocean.com" class="with_image">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <use xlink:href="#navbar-hacktoberfest"></use>
+                </svg>
+                <p>
+                  <strong>Hacktoberfest</strong>
+                  Contribute to Open Source
+                </p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="section column">
+          <header>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <use xlink:href="#navbar-build"></use>
+            </svg>
+            Build with DigitalOcean
+          </header>
+          <ul role="menu" class="indent">
+            <li role="menuitem">
+              <a title="Community-built tools and integrations that use the DigitalOcean API" href="/community/tools">Community Tools and Integrations</a>
+            </li>
+            <li role="menuitem">
+              <a href="https://www.digitalocean.com/hatch/" title="Build your startup on DigitalOcean.">
+                Hatch Startup Program
+              </a>
+            </li>
+            <li role="menuitem">
+              <a href="https://marketplace.digitalocean.com/vendors/"
+                 title="List your open source One-Click Application in the DigitalOcean Marketplace">
+                Marketplace Partner Program
+              </a>
+            </li>
+            <li role="menuitem">
+              <a href="https://www.digitalocean.com/partners/solutions-partners/"
+                 title="Easily deploy & modernize your clients’ infrastructures with the Solutions Partner Program">
+                Solutions Partner Program
+              </a>
+            </li>
+            <li role="menuitem">
+              <a href="https://www.digitalocean.com/droplets-for-demos/"
+                 title="DigitalOcean credits to fund research for conference and meetup presentations">
+                Presentation Grants
+              </a>
+            </li>
+            <li role="menuitem">
+              <a href="https://github.com/digitalocean"
+                 title="View all the open-source projects that DigitalOcean have on GitHub">
+                DigitalOcean on GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li role="menuitem" data-show="mobile" data-flex="grow" class="right">
+      <a href="javascript:void(0);" data-toggle="dialog" data-target=".mobile_nav">
+        <span class="icon-menu-thin"></span>
+      </a>
+    </li>
+    <li role="menuitem" data-flex="grow">
+      <button id="q" class="search_button">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" shape-rendering="auto"
+               width="14px" height="14px">
+            <use xlink:href="#navbar-search"></use>
+          </svg>
+          Search Community
+          <kbd>/</kbd>
+      </button>
+    </li>
+    <li role="menuitem">
+      <a class="button blue-button small-button" href="/community/auth/digitalocean?display=sessionless+register+button">Sign Up</a>
+    </li>
+  </ul>
+</nav>
+
+<header>
+  <div class="legacy-header ">
+    <div class="flash-container">
+      
+    </div>
+
+    <div class="wrapper">
+      
+    </div>
+  </div>
+</header>
+
+
+
+      
+
+      <div class='wrapper layout-wrapper'>
+
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+  <div class="section-content section-content-growable content Tutorial-content">
+    
+
+    <div class="container tutorial-header">
+      <div class="featured-content-header">
+        <span class="featured-items-right-bar-container">
+</span>
+
+      </div>
+
+      
+      <h4 class="eyebrow">Tutorial</h4>
+      <h1 class="content-title Tutorial-header">Создание веб-приложения с помощью Flask в Python 3</h1>
+
+      <span class="meta-section tags">
+  <a class="tag" href="/community/tags/python">Python</a><a class="tag" href="/community/tags/python-frameworks">Python Frameworks</a><a class="tag blue" href="/community/tags/development">Development</a><a class="tag" href="/community/tags/project">Programming Project</a>
+</span>
+
+
+      <div class="tutorial-authors-translations">
+        <div class="tutorial-authors">
+          <div class="component-collaborators-container">
+  <ul class="component-collaborators-content">
+        <li class="collaborator-byline-avatar">
+          <a href="/community/users/adyouri">
+            <img alt="adyouri" class="avatar avatar-large" src="https://secure.gravatar.com/avatar/c11acca84b7b1a7a5cb3e44c42a2789f?secure=true&d=identicon" width="80" height="80" />
+</a>        </li>
+
+    <li class="collaborators-byline-data">
+        <p class="names">By <a href="/community/users/adyouri">Abdelhadi Dyouri</a></p>
+
+      <span class="meta-section date-views">
+  
+  <span class="meta-section timestamp"><span class="tutorial-date-text">Published on</span><span class="tutorial-date">May 13, 2020</span></span>
+</span>
+
+    </li>
+  </ul>
+</div>
+
+        </div>
+
+          <select name="translation_language" id="translation_language" autocomplete="off" class="large-chosen-dropdown language-dropdown"><option value="/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3">English</option>
+<option value="/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-de">Deutsch</option>
+<option value="/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-es">Español</option>
+<option value="/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-fr">Français</option>
+<option value="/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-pt">Português</option>
+<option selected="selected" value="/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru">Русский</option></select>
+      </div>
+    </div>
+
+    
+
+
+
+<div class="content-body tutorial-content" data-growable-markdown>
+  
+  <p><em>Автор выбрал фонд <a href="https://www.brightfunds.org/funds/foss-nonprofits">Free and Open Source Fund</a> для получения пожертвования в рамках программы <a href="https://do.co/w4do-cta">Write for DOnations</a>.</em></p>
+
+<h3 id="Введение">Введение</h3>
+
+<p><a href="http://flask.pocoo.org/">Flask</a> — это небольшой и легкий веб-фреймворк, написанный на языке Python, предлагающий полезные инструменты и функции для облегчения процесса создания веб-приложений с использованием Python. Он обеспечивает гибкость и является более доступным фреймворком для новых разработчиков, так как позволяет создать веб-приложение быстро, используя только один файл Python. Flask — это расширяемая система, которая не обязывает использовать конкретную структуру директорий и не требует сложного шаблонного кода перед началом использования.</p>
+
+<p>В рамках этого обучающего руководства вы будете использовать <a href="https://getbootstrap.com/">инструментарий Bootstrap</a>, чтобы сделать ваше приложение визуально привлекательным. Bootstrap поможет вам включить в ваше веб-приложение быстрые веб-страницы, чтобы приложение можно было использовать на мобильных браузерах без написания для этого собственных кодов HTML, CSS и JavaScript. Инструментарий дает возможность изучить работу Flask.</p>
+
+<p>Flask использует <a href="http://jinja.palletsprojects.com/">механизм шаблонов Jinja</a> для динамического создания HTML-страниц с использованием знакомых понятий в Python, таких как переменные, циклы, списки и т. д. Вы будете использовать эти шаблоны в рамках этого проекта.</p>
+
+<p>С помощью этого обучающего руководства вы создадите небольшой веб-блог с использованием Flask и <a href="https://sqlite.org">SQLite</a> в Python 3. Пользователи приложения могут видеть все посты в вашей базе данных и нажимать на заголовки постов для просмотра их содержания. Кроме того, присутствует возможность добавлять новый пост в базу данных и редактировать или удалять существующий пост.</p>
+
+<h2 id="Предварительные-требования">Предварительные требования</h2>
+
+<p>Перед началом выполнения этого руководства вам потребуется:</p>
+
+<ul>
+<li>Локальная среда программирования Python 3. Следуйте инструкциям из обучающего руководства <a href="https://www.digitalocean.com/community/tutorial_series/how-to-install-and-set-up-a-local-programming-environment-for-python-3">Установка и настройка локальной среды программирования для Python 3</a> для вашего локального компьютера. В этом обучающем руководстве мы назовем директорию проекта <code>flask_blog</code>.</li>
+<li>Понимание концепций Python 3, таких как <a href="https://www.digitalocean.com/community/tutorials/understanding-data-types-in-python-3">типы данных</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-write-conditional-statements-in-python-3-2">условные выражения</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-construct-for-loops-in-python-3">циклы for</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-define-functions-in-python-3">функции</a> и другие. Если вы не знакомы с Python, воспользуйтесь нашей серией <a href="https://www.digitalocean.com/community/tutorial_series/how-to-code-in-python-3">Программирование на Python 3</a>.</li>
+</ul>
+
+<h2 id="Шаг-1-—-Установка-flask">Шаг 1 — Установка Flask</h2>
+
+<p>На этом этапе вы активируете вашу среду Python и установите Flask с помощью установщика пакетов <a href="https://pypi.org/project/pip/"><code>pip</code></a>.</p>
+
+<p>Если вы еще не активировали среду программирования, убедитесь, что находитесь в директории проекта (<code><span class="highlight">flask_blog</span></code>), и с помощью следующей команды активируйте среду:</p>
+<pre class="code-pre command prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="$">source <span class="highlight">env</span>/bin/activate
+</li></ul></code></pre>
+<p>После активации среды программирования в вашей командной строке появится префикс <code><span class="highlight">env</span></code>, и она будет выглядеть следующим образом:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">
+</li></ul></code></pre>
+<p>Данный префикс служит индикатором того, что среда <code>env</code> активна (имя среды может быть другим, в зависимости от того, как вы назвали ее при создании).</p>
+
+<span class='note'><p>
+<strong>Примечание.</strong> Вы можете использовать <a href="https://git-scm.com/">Git</a>, систему контроля версий, для эффективного управления и отслеживания процесса разработки вашего проекта. О том, как использовать Git, вы можете узнать из нашей статьи <a href="https://www.digitalocean.com/community/tutorial_series/introduction-to-git-installation-usage-and-branches">Введение в Git: установка, использование и ответвления</a>.</p>
+
+<p>Если вы используете Git, рекомендуем игнорировать вновь созданную директорию <code>env</code> в файле <code>.gitignore</code>, чтобы избежать отслеживания файлов, не связанных с проектом.<br></p></span>
+
+<p>Теперь вы можете установить пакеты Python и изолировать ваш код проекта от основной системы Python. Это делается с помощью <code>pip</code> и <code>python</code>.</p>
+
+<p>Чтобы установить Flask, запустите следующую команду:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">pip install flask
+</li></ul></code></pre>
+<p>После завершения установки запустите следующую команду, чтобы подтвердить установку:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">python -c "import flask; print(flask.__version__)"
+</li></ul></code></pre>
+<p>Используйте <a href="https://docs.python.org/3/using/cmdline.html">интерфейс командной строки <code>python</code></a> с опцией <code>-c</code> для выполнения кода Python. Далее вы импортируете пакет <code>flask</code> с помощью <code>import flask;</code> и затем распечатываете версию Flask через переменную <code>flask.__version__</code>.</p>
+
+<p>В результате вы увидите номер версии, который будет выглядеть примерно так:</p>
+<pre class="code-pre "><code><div class="secondary-code-label " title="Output">Output</div><span class="highlight">1.1.2</span>
+</code></pre>
+<p>Вы создали папку проекта, виртуальную среду и установили Flask. Теперь вы готовы переходить к настройке базового приложения.</p>
+
+<h2 id="Шаг-2-—-Создание-базового-приложения">Шаг 2 — Создание базового приложения</h2>
+
+<p>Теперь, когда вы настроили среду программирования, можно начинать использовать Flask. На этом этапе вы создадите небольшое веб-приложение внутри файла Python и запустите его для начала работы сервера, который отобразит определенную информацию в браузере.</p>
+
+<p>В директории <code>flask_blog</code> откройте файл с именем <code>hello.py</code> для редактирования. Используйте <code>nano</code> или любой другой текстовый редактор:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano hello.py
+</li></ul></code></pre>
+<p>Этот файл <code>hello.py</code> будет служить минимальным примером того, как обрабатывать запросы HTTP. Внутри него импортируйте <a href="https://flask.palletsprojects.com/en/1.1.x/api/#flask.Flask">объект <code>Flask</code></a> и создайте функцию, которая возвращает ответ HTTP. Напишите следующий код внутри файла <code>hello.py</code>​​​:</p>
+<div class="code-label " title="flask_blog/hello.py">flask_blog/hello.py</div><pre class="code-pre "><code class="code-highlight language-python">from flask import Flask
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def hello():
+    return 'Hello, World!'
+</code></pre>
+<p>В предыдущем блоке кода необходимо предварительно импортировать объект <code>Flask</code> из пакета <code>flask</code>. Затем вы создаете ваш экземпляр приложения Flask с именем <code>app</code>. Вы передаете специальную переменную <code>__name__</code>, которая содержит имя текущего модуля Python. Она указывает экземпляру его расположение. Это необходимо, так как Flask устанавливает ряд путей за кадром.</p>
+
+<p>Создав экземпляр <code>app</code>, вы начинаете используете его для обработки поступающих веб-запросов и отправки ответов пользователю. <code>@app.route</code>​​​ — это <a href="https://en.wikipedia.org/wiki/Python_syntax_and_semantics#Decorators">декоратор</a>, который превращает стандартную функцию Python в <em>функцию просмотра</em> Flask, конвертирующую возвращаемое значение функции в ответ HTTP, который отображается клиентом HTTP, например веб-браузером. Вы передаете значение <code>'/'</code> в <code>@app.route()</code>​​​ для обозначения того, что эта функция будет отвечать на веб-запросы для URL <code>/</code>, который является основным URL-адресом.</p>
+
+<p>Функция просмотра <code>hello()</code> возвращает строку <code>'Hello, World!'</code> в качестве ответа.</p>
+
+<p>Сохраните и закройте файл.</p>
+
+<p>Для запуска вашего веб-приложения сначала укажите Flask, где искать приложение (в вашем случае файл <code>hello.py</code>) с помощью переменной среды <code>FLASK_APP</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">export FLASK_APP=hello
+</li></ul></code></pre>
+<p>Затем запустите его в режиме разработки с помощью переменной среды <code>FLASK_ENV</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">export FLASK_ENV=development
+</li></ul></code></pre>
+<p>И наконец, запустите приложение, используя команду <code>flask run</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">flask run
+</li></ul></code></pre>
+<p>После запуска приложения вы увидите примерно следующее:</p>
+<pre class="code-pre "><code><div class="secondary-code-label " title="Output">Output</div> * Serving Flask app "hello" (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 813-894-335
+</code></pre>
+<p>В предыдущем выводе представлена следующая информация:</p>
+
+<ul>
+<li>Название работающего приложения.</li>
+<li>Среда, в которой работает приложение.</li>
+<li><code>Debug mode: on</code> означает, что отладчик Flask работает. Эта функция полезна при разработке, так как при возникновении проблем она выдает детализированные сообщения об ошибке, что упрощает работу по их устранению.</li>
+<li>Приложение работает локально на URL <code>http://127.0.0.1:5000/</code>, где <code>127.0.0.1</code> — это IP-адрес <code>localhost</code> вашего компьютера, а <code>:5000</code> — номер порта.</li>
+</ul>
+
+<p>Откройте браузер и введите URL ​​​​​​<code>http://127.0.0.1:5000/</code>​​​​​​. Вы получите строку <code>Hello, World!</code> в качестве ответа. Это подтверждает то, что ваше приложение успешно работает.</p>
+
+<p><span class='warning'><strong>Внимание</strong>. Flask использует простой веб-сервер для обслуживания нашего приложения в среде разработки, что также означает, что отладчик Flask работает для облегчения работы по обнаружению ошибок. Этот сервер для разработки не должен использоваться при развертывании в производственной среде. Дополнительную информацию можно найти в документации Flask на странице <a href="https://flask.palletsprojects.com/en/1.1.x/deploying/">Опции развертывания</a> или в обучающем <a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04">руководстве по развертыванию Flask</a>.<br></span></p>
+
+<p>Теперь вы можете оставить сервер разработки работать в терминале и открыть другое окно терминала. Перейдите в папку проекта, где находится файл <code>hello.py</code>​​​, активируйте виртуальную среду, установите переменные среды <code>FLASK_ENV</code> и <code>FLASK_APP</code>, а затем выполните следующие шаги (эти команды перечислены ранее на этом шаге).</p>
+
+<span class='note'><p>
+<strong>Примечание</strong>. При открытии нового терминала важно помнить об активации виртуальной среды и настройке переменных среды <code>FLASK_ENV</code> и <code>FLASK_APP</code>.</p>
+
+<p>Если сервер разработки приложения Flask работает, невозможно запустить еще одно приложение Flask с помощью такой же команды <code>flask run</code>. Это связано с тем, что <code>flask run</code> по умолчанию использует номер порта <code>5000</code>, следовательно, когда он занят, невозможно запустить другое приложение, поэтому вы увидите ошибку аналогичную этой:</p>
+<pre class="code-pre "><code><div class="secondary-code-label " title="Output">Output</div>OSError: [Errno 98] Address already in use
+</code></pre>
+<p>Для решения этой проблемы нужно либо остановить работающий в настоящий момент сервер с помощью команды <code>CTRL+C</code>, а затем снова задать команду <code>flask run</code>, или, если вам нужно,чтобы оба сервера работали одновременно, передать другой номер порта в аргумент <code>-p</code>, например запустить другое приложение через порт <code>5001</code>, используя следующую команду:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">flask run -p 5001
+</li></ul></code></pre>
+<p></p></span>
+
+<p>Теперь у вас есть небольшое веб-приложение Flask. Вы запустили ваше приложение и вывели информацию в браузере. Далее вы будете использовать файлы HTML в вашем приложении.</p>
+
+<h2 id="Шаг-3-—-Использование-шаблонов-html">Шаг 3 — Использование шаблонов HTML</h2>
+
+<p>Сейчас ваше приложение отображает только простое сообщение без какого-либо HTML. Веб-приложения в основном используют HTML для отображения информации для посетителя, поэтому теперь вы можете заняться включением в ваше приложение файлов HTML, которые можно отобразить в браузере.</p>
+
+<p>Flask предлагает вспомогательную функцию <code>render_template()</code>, которая позволяет использовать <a href="http://jinja.pocoo.org/">механизм шаблонов Jinja</a>. Это упрощает работу с HTML благодаря написанию вашего кода HTML в файлах <code>.html</code>, а также использованию логики в вашем коде HTML. Вы будете использовать файлы HTML (<em>шаблоны</em>) для создания всех страниц вашего приложения, например главной страницы, где будут отображаться текущие посты блога, страницы поста блога, страницы, на которой пользователь сможет добавить новый пост и т. д.</p>
+
+<p>На этом этапе вы создадите свое основное приложение Flask в новом файле.</p>
+
+<p>Сначала в директории <code>flask_blog</code> с помощью <code>nano</code> или другого редактора создайте и отредактируйте файл <code>app.py</code>. Здесь будет хранить весь код, который вы будете использовать для создания приложения с блогом:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano app.py
+</li></ul></code></pre>
+<p>В этом новом файле вы сможете импортировать объект <code>Flask</code> для создания экземпляра приложения Flask так же, как вы делали ранее. Кроме того, вы сможете импортировать вспомогательную функцию <a href="https://flask.palletsprojects.com/en/1.1.x/api/#flask.render_template"><code>render_template()</code></a>, позволяющую поставлять файлы шаблонов HTML, существующих в папке <code>templates</code>, которую вы создадите. Файл будет иметь единичную функцию просмотра, отвечающую за обработку запросов по основному маршруту <code>/</code>. Добавьте следующее содержимое:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+</code></pre>
+<p>Функция просмотра <code>index()</code> возвращает результат вызова <code>render_template()</code> с <code>index.html​​</code> в качестве аргумента. Это дает указание <code>render_template()</code> искать файл с именем <code>index.html</code> в <em>папке шаблонов</em>. И папка, и файл еще отсутствуют. Вы получите сообщение об ошибке, если запустите приложение на этом этапе. Тем не менее при запуске вы уже будете знать об этой часто встречающейся ошибке. Затем вы сможете исправить ошибку, создав необходимые папку и файл.</p>
+
+<p>Сохраните и закройте файл.</p>
+
+<p>Остановите сервер разработки на другом терминале, на котором работает приложение <code>hello</code> с помощью <code>CTRL+C</code>.</p>
+
+<p>Перед запуском приложения убедитесь, что вы корректно указали значение для переменной среды <code>FLASK_APP</code>, так как вы больше не используете приложение <code>hello</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">export FLASK_APP=app
+</li><li class="line" data-prefix="(env)sammy@localhost:$">flask run
+</li></ul></code></pre>
+<p>После открытия URL <code>http://127.0.0.1:5000/</code> в вашем браузере страница отладчика сообщит вам, что шаблон <code>index.html</code> не был найден. Основная строка кода, которая привела к этой ошибке, будет выделена. В данном случае это строка <code>return render_template('index.html')</code>.</p>
+
+<p>Если вы нажмете на эту строку, отладчик откроет код, и у вас будет дополнительный контекст для понимания и решения проблемы.</p>
+
+<p><img src="https://assets.digitalocean.com/articles/webflaskapp/step3a.png" alt="Отладчик Flask"></p>
+
+<p>Для устранения данной ошибки создайте директорию с именем <code>templates</code> внутри директории <code>flask_blog</code>. Затем внутри нее откройте файл с именем <code>index.html​</code>​​ для редактирования:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">mkdir templates
+</li><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/index.html
+</li></ul></code></pre>
+<p>После этого добавьте следующий код HTML внутри <code>index.html</code>​​:</p>
+<div class="code-label " title="flask_blog/templates/index.html">flask_blog/templates/index.html</div><pre class="code-pre "><code class="code-highlight language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;FlaskBlog&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+   &lt;h1&gt;Welcome to FlaskBlog&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Сохраните файл и используйте свой браузер для перехода на <code>http://127.0.0.1:5000/</code> или обновите страницу. Теперь браузер должен отобразить текст <code>Welcome to FlaskBlog</code> в теге <code>&lt;h1&gt;</code>.</p>
+
+<p>Помимо папки <code>templates</code> веб-приложения Flask также обычно имеют папку <code>static</code> для хостинга статичных файлов, таких как файлы CSS, файлы JavaScript и изображения, которые использует приложение.</p>
+
+<p>Вы можете создать файл стилей <code>style.css</code>, чтобы добавить CSS в ваше приложение. Сначала создайте директорию с именем <code>static</code> внутри основной директории <code>flask_blog</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">mkdir static
+</li></ul></code></pre>
+<p>Затем создайте другую директорию с именем <code>css</code> внутри директории <code>static</code> для хостинга файлов <code>.css</code>. Обычно это делается для упорядочивания статичных файлов в специальных папках. Например, файлы JavaScript обычно находятся в директории с именем <code>js</code>, изображения хранятся в директории <code>images</code> (или <code>img</code>) и т. д. Следующая команда создает директорию <code>css</code> внутри директории <code>static</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">mkdir static/css
+</li></ul></code></pre>
+<p>После этого откройте файл <code>style.css</code> в директории <code>css</code> для редактирования:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano static/css/style.css
+</li></ul></code></pre>
+<p>Добавьте следующее правило CSS в файл <code>style.css</code>:</p>
+<div class="code-label " title="flask_blog/static/css/style.css">flask_blog/static/css/style.css</div><pre class="code-pre "><code class="code-highlight language-css">h1 {
+    border: 2px #eee solid;
+    color: brown;
+    text-align: center;
+    padding: 10px;
+}
+</code></pre>
+<p>Код CSS добавит границу, изменит цвет на коричневый, выравняет текст по центру и добавит небольшое дополнение к меткам <code>&lt;h1&gt;</code>.</p>
+
+<p>Сохраните и закройте файл.</p>
+
+<p>Далее откройте файл шаблона <code>index.html</code> для редактирования:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/index.html
+</li></ul></code></pre>
+<p>Добавьте ссылку в файл <code>style.css</code> внутри раздела <code>&lt;head&gt;</code> файла шаблона <code>index.html</code>:</p>
+<div class="code-label " title="flask_blog/templates/index.html">flask_blog/templates/index.html</div><pre class="code-pre "><code class="code-highlight language-html">. . .
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    <span class="highlight">&lt;link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}"&gt;</span>
+    &lt;title&gt;FlaskBlog&lt;/title&gt;
+&lt;/head&gt;
+. . .
+</code></pre>
+<p>Для этого вы используете вспомогательную функцию <a href="https://flask.palletsprojects.com/en/1.1.x/api/#flask.url_for"><code>url_for()</code></a>​​​ для генерирования подходящего расположения файла. Первый аргумент указывает, что вы связаны со статичным файлом, а второй — это путь файла внутри статичной директории.</p>
+
+<p>Сохраните и закройте файл.</p>
+
+<p>После обновления страницы индекса вашего приложения вы увидите, что цвет текста <code>Welcome to FlaskBlog</code>​​​ теперь коричневый, расположен по центру и добавлен внутри границы.</p>
+
+<p>Используйте язык CSS для оформления стиля приложения и придавайте ему более привлекательный вид с помощью своего собственного дизайна. Однако, если вы не веб-дизайнер или не знакомы с CSS, воспользуйтесь <a href="https://getbootstrap.com/">инструментарием Bootstrap</a>, который предлагает простые в использовании компоненты для оформления приложения. В данном проекте мы будем использовать Bootstrap.</p>
+
+<p>Вероятно, вы уже догадались, что создание другого шаблона HTML будет означать повторение основной части кода HTML, который уже написан вами в шаблоне <code>index.html</code>. Избежать ненужного повторения кода возможно благодаря файлу <em>базового шаблона</em>, из которого наследуются все ваши файлы HTML. Дополнительную информацию можно найти в статье <a href="https://jinja.palletsprojects.com/en/2.10.x/templates/#template-inheritance">Наследование шаблонов в Jinja</a>.</p>
+
+<p>Для создания базового шаблона сначала необходимо создать файл с именем <code>base.html</code> внутри директории <code>templates</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/base.html
+</li></ul></code></pre>
+<p>Введите следующий код в шаблоне <code>base.html</code>​​:</p>
+<div class="code-label " title="flask_blog/templates/base.html">flask_blog/templates/base.html</div><pre class="code-pre "><code class="code-highlight language-html">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;!-- Required meta tags --&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;
+
+    &lt;!-- Bootstrap CSS --&gt;
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"&gt;
+
+    &lt;title&gt;<span class="highlight">{% block title %} {% endblock %}</span>&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;nav class="navbar navbar-expand-md navbar-light bg-light"&gt;
+        &lt;a class="navbar-brand" href="<span class="highlight">{{ url_for('index')}}</span>"&gt;FlaskBlog&lt;/a&gt;
+        &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"&gt;
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+            &lt;ul class="navbar-nav"&gt;
+            &lt;li class="nav-item active"&gt;
+                &lt;a class="nav-link" href="#"&gt;About&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+    &lt;div class="container"&gt;
+        <span class="highlight">{% block content %} {% endblock %}</span>
+    &lt;/div&gt;
+
+    &lt;!-- Optional JavaScript --&gt;
+    &lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;
+    &lt;script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"&gt;&lt;/script&gt;
+    &lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Сохраните и закройте файл после редактирования.</p>
+
+<p>Основная часть кода в предыдущем блоке состоит из стандартного HTML и кода, необходимого для Bootstrap. Теги <code>&lt;meta&gt;</code> содержат информацию для веб-браузера, тег <code>&lt;link&gt;</code> привязывает файлы CSS Bootstrap, а теги <code>&lt;script&gt;</code> являются ссылками на код JavaScript, который позволяет выполнить ряд дополнительных функций Bootstrap. Дополнительную информацию по этому вопросу можно найти в <a href="https://getbootstrap.com/">документации Bootstrap</a>.</p>
+
+<p>Однако следующие выделенные части относятся к механизму шаблонов Jinja:</p>
+
+<ul>
+<li><code><span class="highlight">{% block title %} {% endblock %}</span></code>: <a href="https://jinja.palletsprojects.com/en/2.10.x/templates/#blocks">блок</a>, замещающий заголовок. Позже вы будете использовать его в других шаблонах для написания пользовательского заголовка для каждой страницы в приложении без перезаписи всего раздела <code>&lt;head&gt;</code> каждый раз.</li>
+<li><code><span class="highlight">{{ url_for('index')}}</span></code>: вызов функции, который возвращает URL для функции просмотра <code>index()</code>. Этот вариант отличается от прошлого вызова <code>url_for()</code>, который использовался для привязки статичного файла CSS. Он использует только один аргумент, а именно имя функции просмотра, и привязывается к маршруту, связанному с функцией вместо статичного файла.</li>
+<li><code><span class="highlight">{% block content %} {% endblock %}</span></code>: еще один блок, который будет замещен контентом в зависимости от <em>дочернего шаблона</em> (шаблоны, которые наследуются из <code>base.html</code>), который заменит его.</li>
+</ul>
+
+<p>Теперь, когда у вас есть базовый шаблон, вы можете воспользоваться преимуществом, используя наследование. Откройте файл <code>index.html</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/index.html
+</li></ul></code></pre>
+<p>Замените его содержание на следующее:</p>
+<div class="code-label " title="flask_blog/templates/index.html">flask_blog/templates/index.html</div><pre class="code-pre "><code class="code-highlight language-html">{% extends 'base.html' %}
+
+{% block content %}
+    &lt;h1&gt;{% block title %} Welcome to FlaskBlog {% endblock %}&lt;/h1&gt;
+{% endblock %}
+</code></pre>
+<p>В этой новой версии шаблона <code>index.html</code> вы используете тег <code>{% extends %}</code> для наследования из шаблона <code>base.html</code>. Затем вы расширите его, заменив блок <code>content</code> в базовом шаблоне на содержимое блока <code>content</code> из предыдущего блока кода.</p>
+
+<p>Этот блок <code>content</code> содержит тег <code>&lt;h1&gt;</code> с текстом <code>Welcome to FlaskBlog</code> внутри блока <code>title</code>, который в свою очередь заменяет оригинальный блок <code>title</code> в шаблоне <code>base.html</code> текстом <code>Welcome to FlaskBlog</code>. Так вы можете избежать повторения одного и того же текста дважды, так как он используется и в качестве названия страницы, и в качестве заголовка, который появляется под панелью навигации, унаследованной от базового шаблона.</p>
+
+<p>Наследование шаблона также дает возможность использовать код HTML из других шаблонов (в данном случае <code>base.html</code>) без повторения его при каждой необходимости.</p>
+
+<p>Сохраните и закройте файл, а затем обновите страницу индекса в браузере. Вы увидите страницу с панелью навигации и оформленным заголовком.</p>
+
+<p><img src="https://assets.digitalocean.com/articles/webflaskapp/step3b.png" alt="Страница индекса с Bootstrap"></p>
+
+<p>Вы использовали шаблоны HTML и статичные файлы в Flask. Вы также использовали Bootstrap для начала оформления страницы и базовый шаблон для избежания повторения кода. В следующем шаге вы настроите базу данных, которая будет хранить данные вашего приложения.</p>
+
+<h2 id="Шаг-4-—-Настройка-базы-данных">Шаг 4 — Настройка базы данных</h2>
+
+<p>На этом этапе вы настроите базу данных для хранения данных, в случае с вашим приложением — это посты блога. Вы также наполните базу несколькими примерами.</p>
+
+<p>Вы будете использовать файл <a href="https://sqlite.org">базы данных SQLite</a> для хранения ваших данных, так как модуль <a href="https://docs.python.org/3/library/sqlite3.html"><code>sqlite3</code></a>, который мы будем использовать для взаимодействия с базой, уже присутствует в стандартной библиотеке Python. Дополнительную информацию о SQLite можно найти в <a href="https://www.digitalocean.com/community/tutorials/how-and-when-to-use-sqlite">этом обучающем руководстве</a>.</p>
+
+<p>Поскольку данные в SQLite хранятся в таблицах и столбцах, а ваши данные в основном состоят из постов блога, в первую очередь вам понадобится создать таблицу с именем <code>posts</code> и необходимыми столбцами. Вы создадите файл <code>.sql</code>, содержащий команды SQL для создания таблицы <code>posts</code> с несколькими столбцами. Затем вы будете использовать этот файл для создания базы данных.</p>
+
+<p>Откройте файл с именем <code>schema.sql</code> внутри директории <code>flask_blog</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano schema.sql
+</li></ul></code></pre>
+<p>Введите следующие команды SQL в этом файле:</p>
+<div class="code-label " title="flask_blog/schema.sql">flask_blog/schema.sql</div><pre class="code-pre "><code class="code-highlight language-bash">DROP TABLE IF EXISTS posts;
+
+CREATE TABLE posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL
+);
+</code></pre>
+<p>Сохраните и закройте файл.</p>
+
+<p>Первая команда SQL — это <code>DROP TABLE IF EXISTS posts;</code>.Она удаляет все уже существующие таблицы с именем <code>posts</code>, чтобы не создавать путаницу. Обратите внимание, что при использовании этих команд SQL будет удалено все содержимое базы данных, поэтому не записывайте ничего важного в веб-приложении до окончания изучения этого руководства и экспериментируйте с финальным результатом. Далее, команда <code>CREATE TABLE posts</code>​​​ используется для создания таблицы <code>posts</code> со следующими столбцами:</p>
+
+<ul>
+<li><code>id</code>: целое число, которое представляет собой <em>первичный ключ</em>. В базе данных будет присвоено уникальное значение каждой записи (посту блога).</li>
+<li><code>created</code>: время создания поста блога. <code>NOT NULL</code> означает, что столбец не может быть пустым, а значение <code>DEFAULT</code> — это <code>CURRENT_TIMESTAMP​​​</code>, т. е. время добавления поста в базу. Точно так же как и в случае с <code>id</code>, вам не нужно указывать значение для этого столбца, так как он будет заполнен автоматически.</li>
+<li><code>title</code>: заголовок поста.</li>
+<li><code>content</code>: содержание поста.</li>
+</ul>
+
+<p>Теперь, когда у вас есть схема SQL в файле <code>schema.sql</code>, вы сможете использовать ее для создания базы данных с помощью файла Python, который сформирует файл базы данных SQLite <code>.db</code>. Откройте файл с именем <code>init_db.py</code> внутри директории <code>flask_blog</code> с помощью любого предпочитаемого редактора:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano init_db.py
+</li></ul></code></pre>
+<p>А затем добавьте следующий код.</p>
+<div class="code-label " title="flask_blog/init_db.py">flask_blog/init_db.py</div><pre class="code-pre "><code class="code-highlight language-python">import sqlite3
+
+connection = sqlite3.connect('database.db')
+
+
+with open('schema.sql') as f:
+    connection.executescript(f.read())
+
+cur = connection.cursor()
+
+cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+            ('First Post', 'Content for the first post')
+            )
+
+cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+            ('Second Post', 'Content for the second post')
+            )
+
+connection.commit()
+connection.close()
+</code></pre>
+<p>Сначала вы импортируете модуль <code>sqlite3</code>, а затем открываете соединение с файлом базы данных <code>database.db</code>, который будет создан сразу после запуска файла Python. После этого используйте функцию <code>open()</code> для открытия файла <code>schema.sql</code>. Далее вы оформляете его содержание с помощью метода <a href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.executescript"><code>executescript()</code></a>, при котором выполняется несколько операторов SQL одновременно, что формирует таблицу <code>posts</code>. Вы создаете <a href="https://docs.python.org/3/library/sqlite3.html#cursor-objects">объект курсор</a>, который позволяет вам использовать метод <a href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.execute"><code>execute()</code></a> для выполнения двух операторов SQL <code>INSERT</code>, чтобы добавить два поста блога в таблицу <code>posts</code>. И наконец, вы вносите изменения и закрываете соединение.</p>
+
+<p>Сохраните и закройте файл, а затем запустите его в терминале с помощью команды <code>python</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">python init_db.py
+</li></ul></code></pre>
+<p>После завершения выполнения файла новый файл с именем <code>database.db</code> появится в директории <code>flask_blog</code>. Это означает, что вы успешно настроили свою базу данных.</p>
+
+<p>В следующем шаге вы будете извлекать посты, внесенные в базу данных, и отображать их на домашней странице своего приложения.</p>
+
+<h2 id="Шаг-5-—-Отображение-всех-постов">Шаг 5 — Отображение всех постов</h2>
+
+<p>Теперь, когда вы настроили базу данных, можно изменить функцию просмотра <code>index()</code>, чтобы отображать все посты, внесенные в базу данных.</p>
+
+<p>Откройте файл <code>app.py</code>, чтобы произвести следующие изменения:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano app.py
+</li></ul></code></pre>
+<p>Для первого изменения необходимо импортировать модуль <code>sqlite3</code> в верхней части файла:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python"><span class="highlight">import sqlite3</span>
+from flask import Flask, render_template
+
+. . .
+</code></pre>
+<p>Далее вы создадите функцию, которая обеспечивает подключение к базе данных, и вернете ее. Добавьте ее непосредственно после импорта:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">. . .
+from flask import Flask, render_template
+
+<span class="highlight">def get_db_connection():</span>
+<span class="highlight">    conn = sqlite3.connect('database.db')</span>
+<span class="highlight">    conn.row_factory = sqlite3.Row</span>
+<span class="highlight">    return conn</span>
+
+. . .
+</code></pre>
+<p>Эта функция <code>get_db_connection()</code> открывает соединение с файлом базы данных <code>database.db</code>, а затем устанавливает атрибут <a href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.row_factory"><code>row_factory</code></a> в <code>sqlite3. Row</code>, чтобы получить доступ к столбцам на основе имен. Это означает, что подключение к базе данных будет возвращать строки, которые ведут себя как обычные словари Python. И наконец, функция возвращает объект подключения <code>conn</code>, который вы будете использовать для доступа к базе данных.</p>
+
+<p>После определения функции <code>get_db_connection()</code> необходимо изменить функцию <code>index()</code> следующим образом:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">. . .
+
+@app.route('/')
+def index():
+    <span class="highlight">conn = get_db_connection()</span>
+    <span class="highlight">posts = conn.execute('SELECT * FROM posts').fetchall()</span>
+    <span class="highlight">conn.close()</span>
+    return render_template('index.html'<span class="highlight">, posts=posts</span>)
+</code></pre>
+<p>В этой новой версии функции <code>index()</code> сначала откройте подключение к базе данных, используя функцию <code>get_db_connection()</code>, которую вы определили ранее. После этого выполните запрос SQL, чтобы выбрать все записи из таблицы <code>posts</code>. Вы применяете метод <a href="https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.fetchall"><code>fetchall()</code></a>, чтобы доставить все строки результата запроса. Это вернет список постов, внесенных в базу данных на предыдущем шаге.</p>
+
+<p>Вы закрываете подключение к базе данных, используя метод <code>close()</code>, и возвращаете результат отображения шаблона <code>index.html</code>. Вы также передаете объект <code>posts</code> в качестве аргумента, который содержит результаты, полученные из базы данных. Это откроет вам доступ к постам блога в шаблоне <code>index.html</code>.</p>
+
+<p>После внесения этих изменений сохраните и закройте файл <code>app.py</code>.</p>
+
+<p>Теперь, после передачи постов, доставленных из базы данных в шаблон <code>index.html</code>, вы можете использовать <a href="https://jinja.palletsprojects.com/en/2.10.x/templates/#for">цикл <code>for</code></a> для отображения каждого поста на странице индекса.</p>
+
+<p>Откройте файл <code>index.html</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/index.html
+</li></ul></code></pre>
+<p>Затем измените его следующим образом:</p>
+<div class="code-label " title="flask_blog/templates/index.html">flask_blog/templates/index.html</div><pre class="code-pre "><code class="code-highlight language-html">{% extends 'base.html' %}
+
+{% block content %}
+    &lt;h1&gt;{% block title %} Welcome to FlaskBlog {% endblock %}&lt;/h1&gt;
+<span class="highlight">    {% for post in posts %}</span>
+<span class="highlight">        &lt;a href="#"&gt;</span>
+<span class="highlight">            &lt;h2&gt;{{ post['title'] }}&lt;/h2&gt;</span>
+<span class="highlight">        &lt;/a&gt;</span>
+<span class="highlight">        &lt;span class="badge badge-primary"&gt;{{ post['created'] }}&lt;/span&gt;</span>
+<span class="highlight">        &lt;hr&gt;</span>
+<span class="highlight">    {% endfor %}</span>
+{% endblock %}
+</code></pre>
+<p>В данном случае синтаксис <code>{% for post in posts %}</code> — это цикл <code>for</code> Jinja , который аналогичен циклу <code>for</code> Python, за исключением того, что позже он закрывается с помощью синтаксиса <code>{% endfor %}</code>. Вы используете этот синтаксис для создания цикла для каждого элемента в списке <code>posts</code>, который был передан функцией <code>index()</code> в строке <code>return render_template('index.html', posts=posts)</code>. Внутри этого цикла <code>for</code> вы отображаете название поста в заголовке <code>&lt;h2&gt;</code>​​​ в теге <code>&lt;a&gt;</code> (позже вы будете использовать этот тег для привязки каждого поста в отдельности).</p>
+
+<p>Вы отображаете заголовок с помощью буквального разделителя переменной (<code>{{ ... }}</code>​​​​​​). Не забывайте, что <code>post</code> представляет собой объект словарного типа, поэтому вы сможете получить доступ к заголовку поста с помощью <code>post['title']</code>. Также вы отображаете дату создания поста помощью такого же метода.</p>
+
+<p>После редактирования файла сохраните и закройте его. Затем перейдите на страницу индекса в браузере. Вы увидите на своей странице два поста, которые вы добавили в базу данных.</p>
+
+<p><img src="https://assets.digitalocean.com/articles/webflaskapp/step5.png" alt="Страница индекса с отображенными постами"></p>
+
+<p>Теперь, когда вы изменили функцию просмотра <code>index()</code>, чтобы отобразить все посты, находящиеся в базе данных на домашней странице приложения, вы можете переходить к отображению каждого поста на отдельной странице и разрешить пользователям переходить по ссылке к каждому отдельному посту.</p>
+
+<h2 id="Шаг-6-—-Отображение-отдельного-поста">Шаг 6 — Отображение отдельного поста</h2>
+
+<p>На этом шаге вы создадите новый маршрут Flask с функцией просмотра и новым шаблоном HTML для отображения отдельного поста блога по его ID.</p>
+
+<p>К концу этого шага на URL <code>http://127.0.0.1:5000/1</code> будет находиться страница, на которой отображается первый пост (так как его ID <code>1</code>). На URL <code>http://127.0.0.1:5000/<span class="highlight">ID</span></code> будет отображаться пост с соответствующим номером <code><span class="highlight">ID</span></code>, если такой существует.</p>
+
+<p>Откройте <code>app.py</code> для редактирования:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano app.py
+</li></ul></code></pre>
+<p>Поскольку позже в рамках данного проекта вам потребуется получить пост блога по его ID из базы данных в нескольких расположениях, вы создадите отдельную функцию с именем <code>get_post()</code>. Вы можете вызвать его, передав ID, и получить обратно пост блога, связанный с предоставленным ID, или создать ответ Flask с сообщением <code>404 Not Found​​​</code>, если пост блога не существует.</p>
+
+<p>Для ответа в виде страницы <code>404</code> вам необходимо импортировать функцию <a href="https://werkzeug.palletsprojects.com/en/0.15.x/exceptions/#werkzeug.exceptions.abort"><code>abort()</code></a> из библиотеки <a href="https://werkzeug.palletsprojects.com/en/0.15.x/"><code>Werkzeug</code></a>, установленной вместе с Flask в верхней части файла:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">import sqlite3
+from flask import Flask, render_template
+<span class="highlight">from werkzeug.exceptions import abort</span>
+
+. . .
+</code></pre>
+<p>Затем добавьте функцию <code>get_post()</code> сразу после функции <code>get_db_connection()</code>, созданной вами на предыдущем шаге:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">. . .
+
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+<span class="highlight">def get_post(post_id):</span>
+<span class="highlight">    conn = get_db_connection()</span>
+<span class="highlight">    post = conn.execute('SELECT * FROM posts WHERE id = ?',</span>
+<span class="highlight">                        (post_id,)).fetchone()</span>
+<span class="highlight">    conn.close()</span>
+<span class="highlight">    if post is None:</span>
+<span class="highlight">        abort(404)</span>
+<span class="highlight">    return post</span>
+
+. . .
+</code></pre>
+<p>Эта новая функция имеет аргумент <code>post_id</code>, который определяет, какой пост блога предназначен для возврата.</p>
+
+<p>Внутри функции вы используете функцию <code>get_db_connection()</code> для открытия подключения к базе данных и выполнения запроса SQL, чтобы получить пост блога, связанный с указанным значением <code>post_id</code>. Вы добавляете метод <code>fetchone()</code> для получения результата и хранения его в переменной <code>post</code>, а затем закрываете подключение. Если переменная <code>post</code> имеет значение <code>None</code>​​​, т. е. результат не найден в базе данных, вы используете функцию <code>abort()</code>, импортированную вами ранее, для ответа с помощью кода ошибки <code>404</code>, и функция завершит выполнение. Если же пост был найден, вы возвращаете значение переменной <code>post</code>.</p>
+
+<p>Далее добавьте следующую функцию просмотра в конце файла <code>app.py</code>:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">. . .
+
+<span class="highlight">@app.route('/&lt;int:post_id&gt;')</span>
+<span class="highlight">def post(post_id):</span>
+<span class="highlight">    post = get_post(post_id)</span>
+<span class="highlight">    return render_template('post.html', post=post)</span>
+</code></pre>
+<p>В этой новой функции просмотра вы добавляете <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#variable-rules"><em>правило переменной</em></a> <code>&lt;int:post_id&gt;</code>, чтобы указать, что часть после слеша (<code>/</code>) представляет собой положительное целое число (отмеченное конвертером <code>int</code>), которое вам необходимо в функции просмотра. Flask распознает это и передает его значение аргументу ключевого слова <code>post_id</code>​​ вашей функции просмотра <code>post()</code>. Затем вы используете функцию <code>get_post()</code> для получения поста блога, связанного с заданным ID, и хранения результата в переменной <code>post</code>, которую вы передаете шаблону <code>post.html</code>. Этот шаблон вы создадите вскоре.</p>
+
+<p>Сохраните файл <code>app.py</code> и новый файл шаблона <code>post.html</code> для редактирования:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/post.html
+</li></ul></code></pre>
+<p>Введите следующий код в этом новом файле <code>post.html</code>. Это будет аналогично файлу <code>index.html</code>, за исключением того, что он будет отображать единичный пост, так же как и содержание поста:</p>
+<div class="code-label " title="flask_blog/templates/post.html">flask_blog/templates/post.html</div><pre class="code-pre "><code class="code-highlight language-html">{% extends 'base.html' %}
+
+{% block content %}
+    &lt;h2&gt;{% block title %} {{ post['title'] }} {% endblock %}&lt;/h2&gt;
+    &lt;span class="badge badge-primary"&gt;{{ post['created'] }}&lt;/span&gt;
+    &lt;p&gt;{{ post['content'] }}&lt;/p&gt;
+{% endblock %}
+</code></pre>
+<p>Вы добавляете блок <code>title</code>, который вы определили в шаблоне <code>base.html</code>, чтобы заголовок страницы отражал заголовок поста, в то же время отображаемый в заголовке <code>&lt;h2&gt;</code>.</p>
+
+<p>Сохраните и закройте файл.</p>
+
+<p>Теперь вы можете переходить к следующим URL-адресам для просмотра двух постов из вашей базы данных вместе со страницей, которая указывает пользователю, что запрашиваемый пост блога не обнаружен (так как пост с номером ID <code>3</code> пока отсутствует):</p>
+<pre class="code-pre "><code>http://127.0.0.1:5000/1
+http://127.0.0.1:5000/2
+http://127.0.0.1:5000/3
+</code></pre>
+<p>Вернувшись на страницу индекса, вы осуществите привязку заголовка каждого поста к соответствующей странице. Сделать это можно с помощью функции <code>url_for()</code>. Сначала откройте шаблон <code>index.html</code> для редактирования:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/index.html
+</li></ul></code></pre>
+<p>Затем измените значение атрибута <code>href</code> с <code>#</code> на <code>{{ url_for('post', post_id=post['id']) }}</code>, чтобы цикл <code>for</code> выглядел следующим образом:</p>
+<div class="code-label " title="flask_blog/templates/index.html">flask_blog/templates/index.html</div><pre class="code-pre "><code class="code-highlight language-html">{% for post in posts %}
+    &lt;a href="<span class="highlight">{{ url_for('post', post_id=post['id']) }}</span>"&gt;
+        &lt;h2&gt;{{ post['title'] }}&lt;/h2&gt;
+    &lt;/a&gt;
+    &lt;span class="badge badge-primary"&gt;{{ post['created'] }}&lt;/span&gt;
+    &lt;hr&gt;
+{% endfor %}
+</code></pre>
+<p>Здесь вы передаете <code>'post'</code> в функцию <code>url_for()</code> в качестве первого аргумента. Это имя функции просмотра <code>post()</code>, и поскольку она принимает аргумент <code>post_id</code>, вы присваиваете значение <code>post['id']</code>. Функция <code>url_for()</code> возвращает правильный URL для каждого поста на основании его ID.</p>
+
+<p>Сохраните и закройте файл.</p>
+
+<p>Теперь ссылки на страницу индекса будут функционировать, как и ожидалось. Таким образом вы завершили построение той части приложения, которая отвечает за отображение постов блога в базе данных. Далее вы будете добавлять возможность создавать, редактировать и удалять посты в вашем приложении.</p>
+
+<h2 id="Шаг-7-—-Изменение-постов">Шаг 7 — Изменение постов</h2>
+
+<p>Теперь, когда вы закончили работу по отображению постов блога, присутствующих в базе данных вашего веб-приложения, вам необходимо дать возможность пользователям вашего приложения писать новые посты в блог и добавлять их в базу данных, редактировать существующие посты, а также удалять ненужные.</p>
+
+<h3 id="Создание-нового-поста">Создание нового поста</h3>
+
+<p>До этого у вас было приложение, которое отображало посты из вашей базы данных, но не предоставляло возможности добавлять новые посты, кроме случая, когда вы напрямую подключены к базе данных SQLite и можете добавить один пост вручную. В этом разделе вы создадите страницу, на которой сможете создать пост, указав его заголовок и содержание.</p>
+
+<p>Откройте файл <code>app.py</code> для редактирования:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano app.py
+</li></ul></code></pre>
+<p>Сначала импортируйте следующее из фреймворка Flask:</p>
+
+<ul>
+<li>Глобальный объект <a href="https://flask.palletsprojects.com/en/1.1.x/api/#flask.request"><code>request</code></a> для доступа к входящим данным запроса, которые будут подаваться через форму HTML.</li>
+<li>Функция <a href="https://flask.palletsprojects.com/en/1.1.x/api/#flask.url_for"><code>url_for()</code></a> для генерирования URL-адресов.</li>
+<li>Функция <a href="https://flask.palletsprojects.com/en/1.1.x/api/#flask.flash"><code>flash()</code></a> для появления сообщения при обработке запроса.</li>
+<li>Функция <a href="https://flask.palletsprojects.com/en/1.1.x/api/#flask.redirect"><code>redirect()</code></a> для перенаправления клиента в другое расположение.</li>
+</ul>
+
+<p>Добавьте импортированные функции в ваш файл следующим образом:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">import sqlite3
+from flask import Flask, render_template<span class="highlight">, request, url_for, flash, redirect</span>
+from werkzeug.exceptions import abort
+
+. . .
+</code></pre>
+<p>Функция <code>flash()</code> хранит всплывающие сообщения в сеансе браузера клиента, что требует настройки <em>секретного ключа</em>. Этот секретный ключ используется для защищенных сеансов, что позволяет Flask запоминать информацию от одного запроса к другому, например, переходить от страницы нового поста к странице индекса. Пользователь может получить доступ к информации, хранящейся в сеансе, но не может изменить ее без секретного ключа. Поэтому никогда никому не передавайте доступ к вашему секретному ключу. Дополнительную информацию можно найти в <a href="https://flask.palletsprojects.com/en/1.1.x/api/#sessions">документации Flask о сеансах</a>.</p>
+
+<p>Для настройки <em>секретного ключа</em> вам нужно добавить конфигурацию <code>SECRET_KEY</code> в ваше приложение через объект <code>app.config</code>. Добавьте ее непосредственно после определения <code>app</code> перед определением функции просмотра <code>index()</code>:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">. . .
+app = Flask(__name__)
+<span class="highlight">app.config['SECRET_KEY'] = 'your secret key'</span>
+
+
+@app.route('/')
+def index():
+    conn = get_db_connection()
+    posts = conn.execute('SELECT * FROM posts').fetchall()
+    conn.close()
+    return render_template('index.html', posts=posts)
+
+. . .
+</code></pre>
+<p>Не забывайте, что секретный ключ должен представлять собой длинную случайную строку.</p>
+
+<p>После настройки секретного ключа вы создадите функцию просмотра, которая будет отображать шаблон, показывающий форму, которую вы можете заполнить для создания нового поста в блоге. Добавьте эту новую функцию внизу файла:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">. . .
+
+@app.route('/create', methods=('GET', 'POST'))
+def create():
+    return render_template('create.html')
+</code></pre>
+<p>Это создает маршрут <code>/create</code>, который принимает запросы GET и POST. Запросы GET принимаются по умолчанию. Для того чтобы также принимать запросы POST, которые посылаются браузером при подаче форм, вы передаете <a href="https://www.digitalocean.com/community/tutorials/understanding-tuples-in-python-3">кортеж</a> с приемлемыми типами запросов в аргумент <code>methods</code> декоратора <code>@app.route()</code>.</p>
+
+<p>Сохраните и закройте файл.</p>
+
+<p>Для создания шаблона откройте файл с именем <code>create.html</code> внутри папки <code>templates</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/create.html
+</li></ul></code></pre>
+<p>Добавьте в новый файл следующий код:</p>
+<div class="code-label " title="flask_blog/templates/create.html">flask_blog/templates/create.html</div><pre class="code-pre "><code class="code-highlight language-html">{% extends 'base.html' %}
+
+{% block content %}
+&lt;h1&gt;{% block title %} Create a New Post {% endblock %}&lt;/h1&gt;
+
+&lt;form method="post"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="title"&gt;Title&lt;/label&gt;
+        &lt;input type="text" name="title"
+               placeholder="Post title" class="form-control"
+               value="{{ request.form['title'] }}"&gt;&lt;/input&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label for="content"&gt;Content&lt;/label&gt;
+        &lt;textarea name="content" placeholder="Post content"
+                  class="form-control"&gt;{{ request.form['content'] }}&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+        &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+{% endblock %}
+</code></pre>
+<p>Большая часть этого кода — стандартный HTML. Он будет отображать поле ввода для заголовка поста, текстовое пространство для содержания поста и кнопку для отправки формы.</p>
+
+<p>Значением ввода заголовка поста является <code>{{ request.form['title'] }}</code>, а текстовое пространство имеет значение <code>{{ request.form['content'] }}</code>. Это сделано для того, чтобы вводимые вами данные не потерялись, если что-то пойдет не по плану. Например, если вы напишете длинный пост и забудете дать ему заголовок, отобразится сообщение, информирующее вас о том, что указание заголовка является обязательным. Это произойдет без потери уже написанного поста, так как он будет сохранен в глобальном объекте <code>request</code>, к которому у вас есть доступ в шаблонах.</p>
+
+<p>Теперь, когда сервер разработки работает, используйте браузер для перехода к маршруту <code>/create</code>:</p>
+<pre class="code-pre "><code>http://127.0.0.1:5000/create
+</code></pre>
+<p>Вы увидите страницу <strong>Create a New Post</strong>​​​ (Создать новый пост) с полями для заголовка и содержания.</p>
+
+<p><img src="https://assets.digitalocean.com/articles/webflaskapp/step7a.png" alt="Страница создания нового поста"></p>
+
+<p>Эта форма подает запрос POST в функцию просмотра <code>create()</code>. Но в функции пока отсутствует код обработки запроса POST, поэтому после заполнения формы и ее отправки ничего не происходит.</p>
+
+<p>Вы будете обрабатывать входящий запрос POST после отправки формы. Это можно сделать в функции просмотра <code>create()</code>. Вы можете отдельно обрабатывать запрос POST, проверяя значение <code>request.method</code>. Когда задано значение <code>'POST'</code>​​​, это означает, что полученный запрос — это запрос POST. Тогда вы можете переходить к извлечению отправленных данных, их проверке и внесению в базу.</p>
+
+<p>Откройте файл <code>app.py</code> для редактирования:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano app.py
+</li></ul></code></pre>
+<p>Измените функцию просмотра <code>create()</code> следующим образом:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">. . .
+
+@app.route('/create', methods=('GET', 'POST'))
+def create():
+    <span class="highlight">if request.method == 'POST':</span>
+        <span class="highlight">title = request.form['title']</span>
+        <span class="highlight">content = request.form['content']</span>
+
+        <span class="highlight">if not title:</span>
+            <span class="highlight">flash('Title is required!')</span>
+        <span class="highlight">else:</span>
+            <span class="highlight">conn = get_db_connection()</span>
+            <span class="highlight">conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',</span>
+                         <span class="highlight">(title, content))</span>
+            <span class="highlight">conn.commit()</span>
+            <span class="highlight">conn.close()</span>
+            <span class="highlight">return redirect(url_for('index'))</span>
+
+    return render_template('create.html')
+</code></pre>
+<p>Выражением <code>if</code> вы обеспечиваете, что следующий за ним код выполняется только в случае, если запрос является запросом POST через сравнение <code>request.method == 'POST'</code>​​​.</p>
+
+<p>Затем вы извлекаете отправленные заголовок и содержание из объекта <code>request.form</code>, который дает вам доступ к данным формы в запросе. Если заголовок не указан, будет выполнено условие <code>if not title</code>, и отобразится сообщение для пользователя с информацией о необходимости заголовка. С другой стороны, если заголовок указан, вы открываете подключение с помощью функции <code>get_db_connection()</code> и вставляете полученные заголовок и содержание в таблицу <code>posts</code>.</p>
+
+<p>Затем вы вносите изменения в базу данных и закрываете подключение. После добавления поста блога в базу данных вы перенаправляете клиента на страницу индекса с помощью функции <code>redirect()</code>, передавая URL, сгенерированный функцией <code>url_for()</code> со значением <code>'index'</code>​​ в качестве аргумента.</p>
+
+<p>Сохраните и закройте файл.</p>
+
+<p>Теперь перейдите к маршруту <code>/create</code>, используя ваш веб-браузер:</p>
+<pre class="code-pre "><code>http://127.0.0.1:5000/create
+</code></pre>
+<p>Внесите в форму любой заголовок и какой-либо контент. После отправки формы вы увидите новый пост, указанный на странице индекса.</p>
+
+<p>И в заключение вам нужно отобразить всплывающие сообщения и добавить ссылку на панель навигации в шаблоне <code>base.html</code> для обеспечения простого доступа к этой новой странице. Откройте файл шаблона:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/base.html
+</li></ul></code></pre>
+<p>Отредактируйте файл, добавив новый тег <code>&lt;li&gt;</code> после ссылки <code>About</code>​​ внутри тега <code>&lt;nav&gt;</code>​​. Затем добавьте новый цикл <code>for</code> непосредственно над блоком <code>content</code> для отображения всплывающих сообщений под панелью навигации. Эти сообщения доступны в специальной функции <code>get_flashed_messages()</code>​​​​​​, имеющейся в Flask:</p>
+<div class="code-label " title="flask_blog/templates/base.html">flask_blog/templates/base.html</div><pre class="code-pre "><code class="code-highlight language-html">&lt;nav class="navbar navbar-expand-md navbar-light bg-light"&gt;
+    &lt;a class="navbar-brand" href="{{ url_for('index')}}"&gt;FlaskBlog&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"&gt;
+        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+        &lt;ul class="navbar-nav"&gt;
+        &lt;li class="nav-item"&gt;
+            &lt;a class="nav-link" href="#"&gt;About&lt;/a&gt;
+        &lt;/li&gt;
+<span class="highlight">        &lt;li class="nav-item"&gt;</span>
+<span class="highlight">            &lt;a class="nav-link" href="{{url_for('create')}}"&gt;New Post&lt;/a&gt;</span>
+<span class="highlight">        &lt;/li&gt;</span>
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+&lt;div class="container"&gt;
+<span class="highlight">    {% for message in get_flashed_messages() %}</span>
+<span class="highlight">        &lt;div class="alert alert-danger"&gt;{{ message }}&lt;/div&gt;</span>
+<span class="highlight">    {% endfor %}</span>
+    {% block content %} {% endblock %}
+&lt;/div&gt;
+</code></pre>
+<p>Сохраните и закройте файл. Теперь на панели навигации будет присутствовать элемент <code>New Post</code>, который связан с маршрутом <code>/create</code>.</p>
+
+<h3 id="Редактирование-поста">Редактирование поста</h3>
+
+<p>Для того чтобы ваш блог был всегда актуальным, нужно иметь возможность редактировать существующие посты. В этом разделе будет рассказано, как создать новую страницу в вашем приложении для упрощения процесса редактирования поста.</p>
+
+<p>Сначала вам нужно добавить новый маршрут в файл <code>app.py</code>. Его функция просмотра получит ID поста, который необходимо отредактировать. А URL будет представлен в формате <code>/<span class="highlight">post_id</span>/edit</code>, где переменная <code><span class="highlight">post_id</span></code> — это ID​​​ поста. Откройте файл <code>app.py</code> для редактирования:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano app.py
+</li></ul></code></pre>
+<p>Далее добавьте следующую функцию просмотра <code>edit()</code> в конце файла. Редактирование существующего поста аналогично созданию нового поста, поэтому эта функция просмотра будет такой же, как и функция просмотра <code>create()</code>:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python">. . .
+
+@app.route('/&lt;int:id&gt;/edit', methods=('GET', 'POST'))
+def edit(id):
+    post = get_post(id)
+
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+
+        if not title:
+            flash('Title is required!')
+        else:
+            conn = get_db_connection()
+            conn.execute('UPDATE posts SET title = ?, content = ?'
+                         ' WHERE id = ?',
+                         (title, content, id))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
+
+    return render_template('edit.html', post=post)
+</code></pre>
+<p>Пост, который вы редактируете, определяется с помощью URL, а Flask будет передавать номер ID функции <code>edit()</code> через аргумент <code>id</code>. Вы добавляете это значение к функции <code>get_post()</code>, чтобы доставить пост, связанный с указанным ID, из базы данных. Новые данные будут поступать в запросе POST, который обрабатывается внутри условия <code>if request.method == 'POST'</code>.</p>
+
+<p>Как и при создании нового поста, сначала вы извлекаете данные из объекта <code>request.form</code>, затем показываете всплывающее сообщение, если заголовок имеет пустое значение, в противном случае открываете подключение к базе данных. После этого вы обновляете таблицу <code>posts</code>, указывая новый заголовок и новое содержание, где ID поста в базе данных соответствует ID, который был указан в URL.</p>
+
+<p>В случае запроса GET вы используете шаблон <code>edit.html</code>, передавая переменную <code>post</code>, которая содержит возвращенное значение функции <code>get_post()</code>. Вы будете это использовать для отображения существующих заголовка и содержания на странице редактирования.</p>
+
+<p>Сохраните и закройте файл, а затем создайте новый шаблон <code>edit.html</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/edit.html
+</li></ul></code></pre>
+<p>Добавьте в новый файл следующий код:</p>
+<div class="code-label " title="flask_blog/templates/edit.html">flask_blog/templates/edit.html</div><pre class="code-pre "><code class="code-highlight language-html">{% extends 'base.html' %}
+
+{% block content %}
+&lt;h1&gt;{% block title %} Edit "{{ post['title'] }}" {% endblock %}&lt;/h1&gt;
+
+&lt;form method="post"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="title"&gt;Title&lt;/label&gt;
+        &lt;input type="text" name="title" placeholder="Post title"
+               class="form-control"
+               value="{{ request.form['title'] or post['title'] }}"&gt;
+        &lt;/input&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label for="content"&gt;Content&lt;/label&gt;
+        &lt;textarea name="content" placeholder="Post content"
+                  class="form-control"&gt;{{ request.form['content'] or post['content'] }}&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+        &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+&lt;hr&gt;
+{% endblock %}
+</code></pre>
+<p>Сохраните и закройте файл.</p>
+
+<p>Этот код пишется по той же схеме, за исключением синтаксиса <code>{{ request.form['title'] or post['title'] }}</code> и <code>{{ request.form['content'] or post['content'] }}</code>. Здесь отображаются данные, сохраненные в запросе, если он существует. В противном случае отображаются данные из переменной <code>post</code>, которая была передана в шаблон, содержащий данные текущей базы данных.</p>
+
+<p>Теперь вы можете перейти к следующему URL для редактирования первого поста:</p>
+<pre class="code-pre "><code>http://127.0.0.1:5000/1/edit
+</code></pre>
+<p>Вы увидите страницу <strong>Edit &ldquo;First Post&rdquo;</strong>(Редактировать «Первый пост»).</p>
+
+<p><img src="https://assets.digitalocean.com/articles/webflaskapp/step7b.png" alt="Страница редактирования поста"></p>
+
+<p>Отредактируйте пост и отправьте форму, затем убедитесь, что пост был обновлен.</p>
+
+<p>Теперь вам нужно добавить ссылку, которая указывает на страницу редактирования для каждого поста на странице индекса. Откройте файл шаблона <code>index.html</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/index.html
+</li></ul></code></pre>
+<p>Отредактируйте файл, чтобы он выглядел в точности, как показано ниже:</p>
+<div class="code-label " title="flask_blog/templates/index.html">flask_blog/templates/index.html</div><pre class="code-pre "><code class="code-highlight language-html">{% extends 'base.html' %}
+
+{% block content %}
+    &lt;h1&gt;{% block title %} Welcome to FlaskBlog {% endblock %}&lt;/h1&gt;
+    {% for post in posts %}
+        &lt;a href="{{ url_for('post', post_id=post['id']) }}"&gt;
+            &lt;h2&gt;{{ post['title'] }}&lt;/h2&gt;
+        &lt;/a&gt;
+        &lt;span class="badge badge-primary"&gt;{{ post['created'] }}&lt;/span&gt;
+<span class="highlight">        &lt;a href="{{ url_for('edit', id=post['id']) }}"&gt;</span>
+<span class="highlight">            &lt;span class="badge badge-warning"&gt;Edit&lt;/span&gt;</span>
+<span class="highlight">        &lt;/a&gt;</span>
+        &lt;hr&gt;
+    {% endfor %}
+{% endblock %}
+</code></pre>
+<p>Сохраните и закройте файл.</p>
+
+<p>Здесь вы добавляете тег <code>&lt;a&gt;</code> для ссылки на функцию просмотра <code>edit()</code>, передавая значение <code>post['id']</code> для того, чтобы подключиться к странице редактирования каждого поста с помощью ссылки <code>Edit</code>​​​.</p>
+
+<h3 id="Удаление-поста">Удаление поста</h3>
+
+<p>Бывают случаи, когда вам больше не нужно, чтобы пост был общедоступен, поэтому важно наличие функции удаления поста. На этом шаге вы добавите функцию удаления в ваше приложение.</p>
+
+<p>Сначала вам нужно добавить новый маршрут <code>/<span class="highlight">ID</span>/delete</code>, который принимает запросы POST, аналогично функции просмотра <code>edit()</code>. Ваша новая функция просмотра <code>delete()</code> будет получать ID поста для удаления из URL. Откройте файл <code>app.py</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano app.py
+</li></ul></code></pre>
+<p>Добавьте следующую функцию просмотра внизу файла:</p>
+<div class="code-label " title="flask_blog/app.py">flask_blog/app.py</div><pre class="code-pre "><code class="code-highlight language-python"># ....
+
+@app.route('/&lt;int:id&gt;/delete', methods=('POST',))
+def delete(id):
+    post = get_post(id)
+    conn = get_db_connection()
+    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()
+    flash('"{}" was successfully deleted!'.format(post['title']))
+    return redirect(url_for('index'))
+</code></pre>
+<p>Эта функция просмотра принимает только запросы POST. Это означает, что навигация по маршруту <code>/<span class="highlight">ID</span>/delete</code> в вашем браузере вернет ошибку, так как веб-браузеры по умолчанию настроены на запросы GET.</p>
+
+<p>Но вы можете получить доступ к этому маршруту через форму, которая отправляет запрос POST, передающий ID поста, который вы хотите удалить. Функция получит значение ID и будет использовать его для получения поста из базы данных с помощью функции <code>get_post()</code>.</p>
+
+<p>Затем вы открываете подключение к базе данных и выполняете команду SQL <code>DELETE FROM</code> для удаления поста. Вы вносите изменения в базу данных и закрываете подключение, одновременно отображая сообщение для пользователя, о том, что пост был успешно удален, и перенаправляете на страницу индекса.</p>
+
+<p>Обратите внимание, что вы не отображаете шаблон. Это связано с тем, что вы просто добавите кнопку <code>Delete</code> на страницу редактирования.</p>
+
+<p>Откройте файл шаблона <code>edit.html</code>:</p>
+<pre class="code-pre custom_prefix prefixed"><code class="code-highlight language-bash"><ul class="prefixed"><li class="line" data-prefix="(env)sammy@localhost:$">nano templates/edit.html
+</li></ul></code></pre>
+<p>Затем добавьте следующий тег <code>&lt;form&gt;</code> после тега <code>&lt;hr&gt;</code> и непосредственно перед строкой <code>{% endblock %}</code>:</p>
+<div class="code-label " title="flask_blog/templates/edit.html">flask_blog/templates/edit.html</div><pre class="code-pre "><code class="code-highlight language-html">&lt;hr&gt;
+
+<span class="highlight">&lt;form action="{{ url_for('delete', id=post['id']) }}" method="POST"&gt;</span>
+<span class="highlight">    &lt;input type="submit" value="Delete Post"</span>
+<span class="highlight">            class="btn btn-danger btn-sm"</span>
+<span class="highlight">            onclick="return confirm('Are you sure you want to delete this post?')"&gt;</span>
+<span class="highlight">&lt;/form&gt;</span>
+
+{% endblock %}
+</code></pre>
+<p>Вы используете метод <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm"><code>confirm()</code></a> для отображения сообщения подтверждения перед отправкой запроса.</p>
+
+<p>Теперь снова перейдите на страницу редактирования поста блога и попробуйте удалить ее:</p>
+<pre class="code-pre "><code>http://127.0.0.1:5000/<span class="highlight">1</span>/edit
+</code></pre>
+<p>В конце этого шага исходный код вашего проекта будет выглядеть, как <a href="https://github.com/do-community/flask_blog">код на этой странице</a>.</p>
+
+<p>Теперь пользователи вашего приложения могут писать новые посты и добавлять их в базу данных, редактировать и удалять существующие посты.</p>
+
+<h2 id="Заключение">Заключение</h2>
+
+<p>В этом обучающем руководстве были представлены важные концепции фреймворка Flask Python. Вы научились создавать небольшое веб-приложение, запускать его на сервере разработки и предоставлять пользователю возможность вносить свои данные через параметры URL и веб-формы. Вы также использовали <a href="http://jinja.palletsprojects.com/">механизм шаблонов Jinja</a> для повторного использования файлов HTML и использования логики в них. В конце этого обучающего руководства вы получили полностью функционирующий веб-блог, взаимодействующий с <a href="https://sqlite.org/">базой данных SQLite</a> для создания, отображения, редактирования и удаления постов блога с использованием языка Python и запросов SQL.</p>
+
+<p>Вы можете продолжить разработку этого приложения, добавив аутентификацию, позволяющую только зарегистрированным пользователям создавать и менять посты в блоге. В также можете добавить комментарии и теги для каждого поста блога или добавить загрузку файла, чтобы пользователи могли включать в пост изображения. Дополнительную информацию можно найти в <a href="https://flask.palletsprojects.com/en/1.1.x/">документации Flask</a>.</p>
+
+<p>У Flask есть множество <a href="http://flask.palletsprojects.com/en/1.1.x/extensions/">расширений</a>, созданных сообществом. Ниже представлен список расширений, который вы можете использовать для упрощения процесса разработки:</p>
+
+<ul>
+<li><a href="https://flask-login.readthedocs.io/en/latest/">Flask-Login</a>: управляет сеансом пользователя и обрабатывает вход и выход, а также запоминает вошедших в систему пользователей.</li>
+<li><a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/">Flask-SQLAlchemy</a>: упрощает использование Flask благодаря <a href="https://www.sqlalchemy.org/">SQLAlchemy</a>, инструментарию Python SQL и Object Relational Mapper для взаимодействия с базами данных.</li>
+<li><a href="https://pythonhosted.org/Flask-Mail/">Flask-Mail</a>: помогает в решении задачи отправки сообщений электронной почты в приложении Flask.</li>
+</ul>
+
+</div>
+
+  </div>
+
+  <div class="tutorial-footer">
+    <div class='tutorial-footer-details'>
+
+
+      <div class="tfb--container">
+  <div class="tfb--content">
+    <div class="tfb--undo tfb--hide">
+      <span class="icon icon-helpfulness-upvoted"></span>
+      <span class="tfb--question">Вы оценили этот перевод как полезный.</span>
+      <button name="button" type="submit" class="tfb--button-down tfb--thumb-down-js">Undo</button>
+    </div>
+
+    <div class="tfb--flagging-undo tfb--hide">
+      <span class="icon icon-helpfulness-flag"></span>
+      <span class="tfb--question">Вы отметили этот перевод флагом.</span>
+      <button name="button" type="submit" class="tfb--button-down tfb--unflagging-js">Undo</button>
+    </div>
+
+    <div class="tfb--do">
+      <span class="tfb--question">Вам понравилось качество перевода?</span>
+      <button name="button" type="submit" class="tfb--button tfb--thumb-up-js" data-translation-upvote-id="5598" data-translation-upvote-type="Tutorial" role="button" aria-label="Good">👍</button>
+      <button name="button" type="submit" class="tfb--button tfb--flagging-js" data-translation-flag-id="5598" data-translation-flag-type="Tutorial" role="button" aria-label="Bad">👎</button>
+    </div>
+  </div>
+</div>
+
+
+
+    <span class="helpfulness_and_share_box"></span>
+
+    <div class="component-collaborators-container-footer">
+  <div class="component-collaborators-content">
+    <div class="heading">About the authors</div>
+
+      <div class="author">
+          <a href="/community/users/adyouri">
+            <div class="avatar">
+              <img alt="adyouri" class="avatar avatar-large" src="https://secure.gravatar.com/avatar/c11acca84b7b1a7a5cb3e44c42a2789f?secure=true&d=identicon" width="80" height="80" />
+            </div>
+</a>          <div class="byline-info">
+            <div class="names">
+              <a href="/community/users/adyouri">
+                Abdelhadi Dyouri
+</a>            </div>
+              <p>Web developer.
+
+I mostly use Python &amp; JavaScript. I like Flask and I am currently learning React.
+
+You can say hi on Twitter :)</p>
+          </div>
+      </div>
+
+      <div class="editor-translator">
+            <div class="author">
+                <a href="/community/users/khancox">
+                  <div class="avatar">
+                    <div class="mod-avatar mod-avatar-large"><img class="avatar avatar-large" src="https://community-cdn-digitalocean-com.global.ssl.fastly.net/variants/j8s9pZWiYNPmywcemmUB9RQp/6a540d0de9b44df9962f62205489ba6e2a5beab748fa47e816b60597a256ba9b" /><span class="mod-star" title="MOD" data-toggle="tooltip" data-container="body"><span class="mod-star-icon"></span></span></div>
+                  </div>
+</a>              <div class="byline-info">
+                <div class="names-editor-translator">
+                  <a href="/community/users/khancox">
+                    Kathryn Hancox
+</a>                </div>
+                <p>Editor</p>
+              </div>
+            </div>
+      </div>
+  </div>
+</div>
+
+
+</div>
+
+
+<div class='looking-for-an-answer'>
+  <div class='section-content'>
+    <h4>Still looking for an answer?</h4>
+    <div class="lfa--actions">
+      <a href="/community/questions/new?tags=Python%2CPython+Frameworks%2CDevelopment%2CProgramming+Project"
+         class="lfa--action-box">
+        <span class="icon icon-look-for-answer-question"></span>
+        Ask a question
+      </a>
+      <a href="javascript:void(0)" class="lfa--action-box use-universal-search-js">
+        <span class="icon icon-look-for-answer-search-thin"></span>
+        Search for more help
+      </a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="featured-content-footer">
+      <span class="featured-items-right-bar-container">
+</span>
+
+    </div>
+  </div>
+
+  <div class="tabs">
+    <ul>
+      <li class="is-active" >
+        <a data-js="related-comments">Comments</a>
+      </li>
+      <li class="not-active">
+        <a data-js="follow-up-questions">Follow-Up Questions</a>
+      </li>
+    </ul>
+  </div>
+
+  <div id="comments-tab" style="display:block">
+    <div class="content-comments">
+</div>
+
+  </div>
+
+
+  <div class="creative-commons">
+  <a class="creative-commons-image" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img rel="license" alt="Creative Commons License" width="88" height="31" src="/assets/community/creativecommons-027bb7f065acf05ba3c0f84a040d2da641648afc81daa6ff5570301d4998bbb6.png" /></a>
+  <div class="license-text">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+        <div class="clearfix"></div>
+      </div>
+
+      
+      <footer>
+        <section>
+            <a href="https://www.digitalocean.com/community/newsletter" class="panel_with_image">
+            <div class="photo_wrap">
+              <img class="photo" src="https://images.prismic.io/digitalocean/ca12c951cc76f33037f3384bba9942545d160d82_iaan_illo.jpg?auto=compress,format" alt="">
+            </div>
+            <span class="heading">Get our biweekly newsletter</span>
+            <p>
+                Sign up for Infrastructure as a Newsletter.
+            </p>
+          </a>
+            <a href="https://www.digitalocean.com/community/pages/hollies-hub-for-good" class="panel_with_image">
+            <div class="photo_wrap">
+              <img class="photo" src="https://images.prismic.io/digitalocean/8a56a463-cf2c-42a2-9d2f-9096c4218f30_HH4G-reference.jpg?auto=compress,format&amp;rect=0,0,370,140&amp;w=370&amp;h=140" alt="">
+            </div>
+            <span class="heading">Hollie&#39;s Hub for Good</span>
+            <p>
+                Working on improving health and education, reducing inequality, and spurring economic growth? We&#39;d like to help.
+            </p>
+          </a>
+            <a href="https://www.digitalocean.com/community/pages/write-for-digitalocean" class="panel_with_image">
+            <div class="photo_wrap">
+              <img class="photo" src="https://images.prismic.io/digitalocean/70910e9fdeb57be46aaa209ce8d9b4dc8e117fab_w4do2.jpg?auto=compress,format" alt="">
+            </div>
+            <span class="heading">Become a contributor</span>
+            <p>
+                You get paid; we donate to tech nonprofits.
+            </p>
+          </a>
+      </section>
+      <section class="slim ">
+        <span class="heading">Featured on Community</span>
+            <a href="https://www.digitalocean.com/community/curriculums/kubernetes-for-full-stack-developers">Kubernetes Course</a>
+            <a href="https://www.digitalocean.com/community/tutorial_series/how-to-code-in-python-3">Learn Python 3</a>
+            <a href="https://www.digitalocean.com/community/tutorials/machine-learning-projects-python-a-digitalocean-ebook">Machine Learning in Python</a>
+            <a href="https://www.digitalocean.com/community/tutorials/how-to-write-your-first-program-in-go">Getting started with Go</a>
+            <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-kubernetes">Intro to Kubernetes</a>
+        <hr>
+        <span class="heading">DigitalOcean Products</span>
+            <a href="https://www.digitalocean.com/products/droplets/">Virtual Machines</a>
+            <a href="https://www.digitalocean.com/products/managed-databases/">Managed Databases</a>
+            <a href="https://www.digitalocean.com/products/kubernetes/">Managed Kubernetes</a>
+            <a href="https://www.digitalocean.com/products/block-storage/">Block Storage</a>
+            <a href="https://www.digitalocean.com/products/spaces/">Object Storage</a>
+            <a href="https://marketplace.digitalocean.com/">Marketplace</a>
+            <a href="https://www.digitalocean.com/products/vpc/">VPC</a>
+            <a href="https://www.digitalocean.com/products/load-balancer/">Load Balancers</a>
+      </section>
+        <section class="product">
+          <a class="copy" href="/products">
+            <h3>Welcome to the developer cloud</h3>
+            <p>DigitalOcean makes it simple to launch in the cloud and scale up as you grow – whether you’re running one virtual machine or ten thousand.</p>
+            <span class="link_text">Learn More</span>
+          </a>
+          <div class="feature">
+            <a class="img_wrap" href="/products">
+              <img class="photo" src="https://images.prismic.io/digitalocean/95c1215227aa7f39f2bd23076de28feb969741c7_cloud.digitalocean.com_projects_63f9252f-652b-4645-9c0c-bee96f2bc503_resources_ic0ce81-2.png?auto=compress,format" alt="DigitalOcean Cloud Control Panel">
+            </a>
+          </div>
+        </section>
+        <section class="dark">
+          <div class="vlist grow">
+            <a href="https://www.digitalocean.com">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+                <title>DigitalOcean Homepage</title>
+                <g fill="#0080FF" fill-rule="evenodd">
+                  <path
+                    d="M24.9153 50v-9.661c10.226 0 18.1638-10.1413 14.2372-20.904-1.4406-3.983-4.6327-7.1751-8.6158-8.6158C19.774 6.921 9.6327 14.8305 9.6327 25.0565H0C0 8.7571 15.7627-3.9548 32.8531 1.3842c7.4576 2.3446 13.418 8.2768 15.7345 15.7344C53.9266 34.2373 41.2429 50 24.9153 50">
+                  </path>
+                  <path
+                    d="M15.339 40.3672h9.6045v-9.6045H15.339zM7.9379 47.7684h7.401v-7.4012H7.938zM1.7514 40.3672H7.938v-6.1864H1.7514z">
+                  </path>
+                </g>
+              </svg>
+            </a>
+            <br><br>
+            © 2021 DigitalOcean, LLC. All rights reserved.
+          </div>
+
+              <div class="vlist">
+                <span class="heading">Company</span>
+                <ul>
+                    <li>
+                      <a href="https://www.digitalocean.com/about/">About</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/about/leadership/">Leadership</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/blog/">Blog</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/careers/">Careers</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/partners/">Partners</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/referral-program/">Referral Program</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/press/">Press</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/legal/">Legal</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/trust/">Security &amp; Trust Center</a>
+                    </li>
+                </ul>
+              </div>
+              <div class="vlist">
+                <span class="heading">Products</span>
+                <ul>
+                    <li>
+                      <a href="https://www.digitalocean.com/pricing/">Pricing</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/products/">Products Overview</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/products/droplets/">Droplets</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/products/kubernetes/">Kubernetes</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/products/managed-databases/">Managed Databases</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/products/spaces/">Spaces</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/products/marketplace/">Marketplace</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/products/load-balancer/">Load Balancers</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/products/block-storage/">Block Storage</a>
+                    </li>
+                    <li>
+                      <a href="https://developers.digitalocean.com/documentation/">API Documentation</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/docs">Documentation</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/docs/release-notes/">Release Notes</a>
+                    </li>
+                </ul>
+              </div>
+              <div class="vlist">
+                <span class="heading">Community</span>
+                <ul>
+                    <li>
+                      <a href="https://www.digitalocean.com/community/tutorials">Tutorials</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/community/questions">Q&amp;A</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/community/tools">Tools and Integrations</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/community/tags">Tags</a>
+                    </li>
+                    <li>
+                      <a href="https://ideas.digitalocean.com/">Product Ideas</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/write-for-donations/">Write for DigitalOcean</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/droplets-for-demos/">Presentation Grants</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/hatch/">Hatch Startup Program</a>
+                    </li>
+                    <li>
+                      <a href="http://store.digitalocean.com/">Shop Swag</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/research/">Research Program</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/open-source/">Open Source</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/community/pages/code-of-conduct">Code of Conduct</a>
+                    </li>
+                </ul>
+              </div>
+              <div class="vlist">
+                <span class="heading">Contact</span>
+                <ul>
+                    <li>
+                      <a href="https://www.digitalocean.com/support/">Get Support</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/docs/getting-started/faq/">Trouble Signing In?</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/company/contact/sales/">Sales</a>
+                    </li>
+                    <li>
+                      <a href="https://www.digitalocean.com/company/contact/#abuse">Report Abuse</a>
+                    </li>
+                    <li>
+                      <a href="https://status.digitalocean.com/">System Status</a>
+                    </li>
+                </ul>
+              </div>
+        </section>
+      </footer>
+
+
+      <div id='sign-in-modal' class="hidden" role="dialog" aria-labelledby="sign-in-modal-title" aria-modal='true'>
+  <div class='mini-dialog-panel'>
+    <div class='dialog-header'>
+      <span class='close-btn'>&times;</span>
+      <span class='dialog-title' id="sign-in-modal-title">Join the Community</span>
+    </div>
+
+    <div class='dialog-body text-center'>
+      <h1 class='dialog-title'>
+        Before you can do that
+        <small>
+          To complete this action, sign in to your Community account or create a new one.
+        </small>
+      </h1>
+
+      <div class='horizontal-buttons'>
+        <a class="sign-in-link button blue-button" data-default-url="/community/auth/digitalocean" href="/community/auth/digitalocean">Sign In</a>
+        <a class="sign-up-link button blue-button" data-default-url="/community/auth/digitalocean?display=sessionless+register" href="/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      <script>
+    $(function() {
+      $('#share-modal .flex-form .field input').click(function () {
+        $(this).select();
+      })
+    });
+  </script>
+  <script>
+    $(function() {
+      $('#share-modal .flex-form .field input').click(function () {
+        $(this).select();
+      })
+    });
+  </script>
+
+
+  <script>
+    $(document).on("community:rest_loaded", function() {
+      if (!!window.init_sharing) {
+        window.init_sharing();
+      }
+      new window.NewsletterSignup();
+      new window.GrowableMarkdown({ target: '[data-growable-markdown]' });
+
+      createTranslationSelection({
+        $translation_language: $('#translation_language'),
+      });
+
+
+      window.initTranslationFeedbackActions(5598);
+
+      function getFeaturedTitle() {
+        if ($('.featured-item-title').length) {
+          return $('.featured-item-title').first().text();
+        } else {
+          return $.trim($.trim($('.featured-item-highlight').first().text()).split('  ')[0]);
+        }
+      }
+
+      function highTrafficRecord() {
+        return $('.featured-item-highlight[data-analytics="high-traffic"]').length
+      }
+
+      function pushToSegment(action, category, name) {
+        window.analytics.track('Web Interaction', {
+          action: action,
+          category: category,
+          name: name,
+        });
+      }
+
+      function pushToGA(event, title, position) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': event,
+          'title': title,
+          'position': position,
+          'nonInteraction': true,
+        });
+      }
+
+      function featuredRelatedSegementCall(title) {
+        highTrafficRecord() ? pushToSegment('cta_viewed', 'high_traffic', title) : pushToSegment('cta_viewed', 'right_rail', title);
+      }
+
+      function featuredRelatedGACall(title) {
+        highTrafficRecord() ? pushToGA('cta_viewed', title, 'high_traffic') : pushToGA('cta_viewed', title, 'right_rail');
+      }
+
+      function featuredRelatedVisible() {
+        if ($('.featured-items-right-bar-container').is(':visible')) {
+          if ($('.featured-item-highlight').is(':visible')) {
+            var title = getFeaturedTitle();
+            featuredRelatedSegementCall(title);
+            featuredRelatedGACall(title);
+          }
+        }
+      }
+
+      $.get('/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru/comments/new', function(data){
+        $('.content-comments').html(data);
+      });
+
+      $.get('/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru/featured_content', function(data){
+        $('.featured-items-right-bar-container').html(data);
+        featuredRelatedVisible();
+      });
+
+      $.get('/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru/helpfulness_and_share_box', function(data){
+        $('.helpfulness_and_share_box').html(data);
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {"@context":"http://schema.org","@type":"Article","name":"Создание веб-приложения с помощью Flask в Python 3","headline":"Создание веб-приложения с помощью Flask в Python 3","alternativeHeadline":"Создание веб-приложения с помощью Flask в Python 3","description":"Автор выбрал фонд Free and Open Source Fund для получения пожертвования в рамках программы Write for DOnations. Flask — это небольшой и легкий веб-фреймворк, написанный на…","keywords":"w4do,DO-Editorial,Python Frameworks,Programming Project,Development,Python","url":"https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-ru"},"dateModified":"2021-01-21T09:52:46Z","inLanguage":"ru","accessMode":"textual","accessModeSufficient":"textual","isAccessibleForFree":true,"license":"https://creativecommons.org/licenses/by-nc-sa/4.0/","publishingPrinciples":"https://www.digitalocean.com/community/tutorials/technical-recommendations-and-best-practices-for-digitalocean-s-tutorials","author":[{"@type":"Person","name":"Abdelhadi Dyouri","@id":"https://www.digitalocean.com/community/users/adyouri"}],"datePublished":"2020-05-13T15:28:47Z","editor":[{"@type":"Person","name":"Kathryn Hancox","@id":"https://www.digitalocean.com/community/users/khancox"}],"image":{"@type":"ImageObject","url":"https://www.digitalocean.com/assets/community/illustrations/DigitalOcean_Community-e00e73a18df20667c3117725e727f3ade330204dff619ad8153050ded7341627.jpg","height":375,"width":750},"interactionStatistic":[{"@type":"InteractionCounter","interactionType":"http://schema.org/LikeAction","userInteractionCount":"23"},{"@type":"InteractionCounter","interactionType":"http://schema.org/CommentAction","userInteractionCount":"0"}],"sourceOrganization":{"@type":"Organization","name":"DigitalOcean Community","url":"https://www.digitalocean.com/community"},"publisher":{"@type":"Organization","name":"DigitalOcean","url":"https://www.digitalocean.com","logo":{"@type":"ImageObject","url":"https://assets.digitalocean.com/logos/DO_Logo_horizontal_blue.png","width":351,"height":60}}}
+</script>
+
+
+
+  <script>
+    $(document).on("community:rest_loaded", function() {
+      $('.date-views').append('<span class=\"meta-section pageviews\"><span class=\"icon icon-eye v-mid\"><\/span><span class=\"views-count v-mid\">26k<\/span><span class=\"sr-only\"> views<\/span><\/span>');
+    });
+  </script>
+  <div class="mobile_nav hidden" role="dialog" aria-label="Mobile Navigation" aria-modal='true'>
+    <div class='dialog-panel'>
+      <div class='dialog-header'>
+        <span class='close-btn'>&times;</span>
+        <span class='dialog-title'></span>
+      </div>
+      <div class='dialog-body'>
+        <header>Community</header>
+        <ul role="menu">
+          <li role="menuitem">
+            <a data-activatable="true" href="/community/tutorials">Tutorials</a>
+          </li>
+          <li role="menuitem">
+            <a data-activatable="true" href="/community/questions">Questions</a>
+          </li>
+          <li role="menuitem">
+            <a href="/community/pages/write-for-digitalocean">Write for Us</a>
+          </li>
+          <li role="menuitem">
+            <a href="https://hacktoberfest.digitalocean.com">Hacktoberfest</a>
+          </li>
+          <li role="menuitem">
+            <a href="/community/tools">Tools</a>
+          </li>
+        </ul>
+
+        <header>Products</header>
+        <ul role="menu">
+          <li role="menuitem">
+            <a href="https://www.digitalocean.com/">Homepage</a>
+          </li>
+          <li role="menuitem">
+            <a href="https://www.digitalocean.com/pricing">Pricing</a>
+          </li>
+          <li role="menuitem">
+            <a href="https://www.digitalocean.com/products">Product Overview</a>
+          </li>
+          <li role="menuitem">
+            <a href="https://marketplace.digitalocean.com/">Marketplace</a>
+          </li>
+        </ul>
+
+        <header>Customers</header>
+        <ul role="menu">
+          <li role="menuitem">
+            <a href="https://cloud.digitalocean.com/login">Control Panel</a>
+          </li>
+          <li role="menuitem">
+            <a href="https://www.digitalocean.com/docs/">Documentation</a>
+          </li>
+          <li role="menuitem">
+            <a href="https://www.digitalocean.com/company/contact/#support">Contact Support</a>
+          </li>
+          <li role="menuitem">
+            <a href="https://www.digitalocean.com/company/contact/sales/">Contact Sales</a>
+          </li>
+        </ul>
+
+        <ul role="menu">
+          <li role="menuitem" class="mobile-log-in">
+              <a id="log-in" href="/community/auth/digitalocean">Sign In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+      $('.use-universal-search-js').on('click', function () {
+        $('#q').trigger('click');
+      });
+
+      function featuredBannerSegmentCall(title) {
+        window.analytics.page({
+          action: 'cta_viewed',
+          category: 'banner',
+          name: title,
+        });
+      }
+
+      function featuredBannerGACall(title) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'cta_viewed',
+          'title': title,
+          'position': 'banner',
+          'nonInteraction': true,
+        });
+      }
+
+      function featuredBannerVisible() {
+        if ($('li[data-js="global-navbar-banner"]').is(':visible')) {
+          var title = $('li[data-js="global-navbar-banner"] a').attr('title');
+          featuredBannerSegmentCall(title);
+          featuredBannerGACall(title);
+        }
+      }
+
+      $.get('/community/banner', function(data) {
+        $('[data-js="global-navbar-banner"]').html(data);
+        $('.navbar .utility').attr('style', $('[data-js="global-navbar-banner"] a').data('navbar-style'));
+        featuredBannerVisible();
+      });
+    });
+
+    window.loadUniversalSearchScript( function () {
+      var search = new UniversalSearch({
+        element_id: 'q',
+        search_on_slash: true,
+        primary_list: ['quicknav', 'community_consolidated'],
+        secondary_list: ['alldocs', 'marketplace'],
+        algolia_app_id: "6ZHEUVKJ88",
+        algolia_public_key: "c5470567eae7fa1177d43222e18ba086"
+      });
+      search.start();
+    });
+  </script>
+
+
+      <script src="https://do-community.github.io/dns-tool-embed/bundle.js" type="text/javascript" defer></script>
+      <script src="https://do-community.github.io/glob-tool-embed/bundle.js" type="text/javascript" defer></script>
+  </body>
+</html>
